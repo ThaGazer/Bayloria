@@ -7,3 +7,31 @@
                   that are need to get intot the boss room. At the 4th lvl 
                   all 20 room keys are need to fight the ultimate boss. 
                   Once you defeat him you win the game.
+  Date Created:   10/23/2014
+*/
+
+#include <iostream>
+#include <string>
+#include "Functions.h"
+
+using namespace std;
+
+int main()
+{
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  return 0;
+}
