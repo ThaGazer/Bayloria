@@ -25,9 +25,9 @@ class smallEnemies
     int getHealth();
     int getAttack();
     int getArmor();
-    void setHealth();
-    void setAttack();
-    void setArmor();
+    void setHealth(int);
+    void setAttack(int);
+    void setArmor(int);
     int attack();
 }
 
@@ -44,9 +44,9 @@ class Player
     int getHealth();
     int getAttack();
     int getArmor();
-    void setHealth();
-    void setAttack();
-    void setArmor();
+    void setHealth(int);
+    void setAttack(int);
+    void setArmor(int);
     int attack();
     
 }
