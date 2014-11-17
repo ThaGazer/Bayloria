@@ -13,5 +13,38 @@
 #ifndef FUNCTIONS_H_INCLUDED
 #define FUNCTIONS_H_INCLUDED
 
+class smallEnemies
+{
+  private:
+    int attackDam;
+    int health;
+    int armor;
+  public:
+    int getHealth();
+    int getAttack();
+    int getArmor();
+    void setHealth();
+    void setAttack();
+    void setArmor();
+    int attack();
+}
+
+
+class Player
+{
+  private:
+    int attackDam;
+    int health;
+    int armor;
+  public:
+    int getHealth();
+    int getAttack();
+    int getArmor();
+    void setHealth();
+    void setAttack();
+    void setArmor();
+    int attack();
+    
+}
 
 #endif
