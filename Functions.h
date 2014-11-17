@@ -20,6 +20,8 @@ class smallEnemies
     int health;
     int armor;
   public:
+    smallEnemies();
+    smallEnemies(int, int, int)
     int getHealth();
     int getAttack();
     int getArmor();
@@ -37,6 +39,8 @@ class Player
     int health;
     int armor;
   public:
+    Player();
+    Player(int, int, int);
     int getHealth();
     int getAttack();
     int getArmor();
