@@ -11,3 +11,56 @@
 */
 
 #include "Functions.h"
+
+class smallEnemies
+{
+  private:
+    int attackDam;
+    int health;
+    int armor;
+  public:
+    smallEnemies()
+    {
+      attackDam = 0;
+      health = 0;
+      armor = 0;
+    }
+    
+    smallEnemies(int att, int heal, int arm)
+    {
+      attackDam = att;
+      health = heal;
+      armor = arm;
+    }
+    
+    int getHealth()
+    {
+      return health;
+    }
+    
+    int getAttack()
+    {
+      return attackDam;
+    }
+    
+    int getArmor()
+    {
+      return armor;
+    }
+    
+    void setHealth(int heal)
+    {
+      health = heal;
+    }
+    
+    void setAttack(int att)
+    {
+      attackDam = att;
+    }
+    
+    void setArmor(int arm)
+    {
+      armor = arm;
+    }
+  
+}
