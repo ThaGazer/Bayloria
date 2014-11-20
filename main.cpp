@@ -11,7 +11,8 @@
 */
 
 #include <iostream>
-#include <string>
+#include <cstdlib>
+
 #include "Functions.h"
 
 using namespace std;
@@ -24,257 +25,71 @@ int main()
   int locRoom3 = 1;
   int locRoom4 = 1;
   int keys = 0;
+  int direct = 0;
+  int startChoice = 0;
+  string playNam = "";
+  bool gameReady = false;
 
-  while(keys < 5)
+
+  while(gameReady == false)
+  {
+    cout << "To start hit 1\n";
+    cout << "For instruction hit 2\n";
+    cout << "To exit game hit 3\n";
+    cin >> startChoice;
+
+    if(startChoice == 1)
+    {
+      cout << "plz enter da name: ";
+      cin >> playNam;
+      Player p1(10, 10, 5, 1.0, playNam);
+      gameReady = true;
+    }
+    else if(startChoice == 2)
+    {
+      instructions();
+      startChoice = 0;
+    }
+    else if(startChoice == 3)
+    {
+      exit(1);
+    }
+    else
+    {
+      startChoice == 0;
+    }
+  }
+
+  while(keys < 4)
   {
     switch(locMain)
     {
       case 1:;
-        cout << "Map loc 1\n";
-        while(locRoom1 < 6)
-        {
-          switch(locRoom1)
-          {
-            case 1:;
-              cout << "Room 1\n";
-              locRoom1++;
-            break; //locRoom1 1
-
-            case 2:;
-              cout << "Room 2\n";
-              locRoom1++;
-            break; //locRoom1 2
-
-            case 3:;
-              cout << "Room 3\n";
-              locRoom1++;
-            break; //locRoom1 3
-
-            case 4:;
-              cout << "Room 4\n";
-              locRoom1++;
-            break; //locRoom1 4
-
-            case 5:;
-              cout << "Room 5\n";
-              locRoom1++;
-            break; //locRoom1 5
-          } //swtich locRoom1
-        } //while locRoom1
+        loc1();
+        keys++;
         locMain++;
       break; //locMain 1
 
       case 2:;
-        cout << "Map loc 2\n";
-        while(locRoom2 < 9)
-        {
-          switch(locRoom2)
-          {
-            case 1:;
-              cout << "Room 1\n";
-              locRoom2++;
-            break; //locRoom2 1
-
-            case 2:;
-              cout << "Room 2\n";
-              locRoom2++;
-            break; //locRoom2 2
-
-            case 3:;
-              cout << "Room 3\n";
-              locRoom2++;
-            break; //locRoom2 3
-
-            case 4:;
-              cout << "Room 4\n";
-              locRoom2++;
-            break; //locRoom2 4
-
-            case 5:;
-              cout << "Room 5\n";
-              locRoom2++;
-            break; //locRoom2 5
-
-            case 6:;
-              cout << "Room 6\n";
-              locRoom2++;
-            break; //locRoom2 6
-
-            case 7:;
-              cout << "Room 7\n";
-              locRoom2++;
-            break; //locRoom2 7
-
-            case 8:;
-              cout << "Room 8\n";
-              locRoom2++;
-            break; //locRoom2 8
-          } //swtich locRoom2
-        } //while locRoom2
+        loc2();
+        keys++;
         locMain++;
-
       break; //case 2
 
       case 3:;
-        cout << "Map loc 3\n";
-        while(locRoom3 < 12)
-        {
-          switch(locRoom3)
-          {
-            case 1:;
-              cout << "Room 1\n";
-              locRoom3++;
-            break; //locRoom3 1
-
-            case 2:;
-              cout << "Room 2\n";
-              locRoom3++;
-            break; //locRoom3 2
-
-            case 3:;
-              cout << "Room 3\n";
-              locRoom3++;
-            break; //locRoom3 3
-
-            case 4:;
-              cout << "Room 4\n";
-              locRoom3++;
-            break; //locRoom3 4
-
-            case 5:;
-              cout << "Room 5\n";
-              locRoom3++;
-            break; //locRoom3 5
-
-            case 6:;
-              cout << "Room 6\n";
-              locRoom3++;
-            break; //locRoom3 6
-
-            case 7:;
-              cout << "Room 7\n";
-              locRoom3++;
-            break; //locRoom3 7
-
-            case 8:;
-              cout << "Room 8\n";
-              locRoom3++;
-            break; //locRoom3 8
-
-            case 9:;
-              cout << "Room 9\n";
-              locRoom3++;
-            break; //locRoom3 9
-
-            case 10:;
-              cout << "Room 10\n";
-              locRoom3++;
-            break; //locRoom3 10
-
-            case 11:;
-              cout << "Room 11\n";
-              locRoom3++;
-            break; //locRoom3 11
-          } //swtich locRoom3
-        } //while locRoom3
+        loc3();
+        keys++;
         locMain++;
       break; //case 3
 
       case 4:;
-        cout << "Map loc 4\n";
-        while(locRoom4 < 15)
-        {
-          switch(locRoom4)
-          {
-            case 1:;
-              cout << "Room 1\n";
-              locRoom4++;
-            break; //locRoom4 1
-
-            case 2:;
-              cout << "Room 2\n";
-              locRoom4++;
-            break; //locRoom4 2
-
-            case 3:;
-              cout << "Room 3\n";
-              locRoom4++;
-            break; //locRoom4 3
-
-            case 4:;
-              cout << "Room 4\n";
-              locRoom4++;
-            break; //locRoom4 4
-
-            case 5:;
-              cout << "Room 5\n";
-              locRoom4++;
-            break; //locRoom4 5
-
-            case 6:;
-              cout << "Room 6\n";
-              locRoom4++;
-            break; //locRoom4 6
-
-            case 7:;
-              cout << "Room 7\n";
-              locRoom4++;
-            break; //locRoom4 7
-
-            case 8:;
-              cout << "Room 8\n";
-              locRoom4++;
-            break; //locRoom4 8
-
-            case 9:;
-              cout << "Room 9\n";
-              locRoom4++;
-            break; //locRoom4 9
-
-            case 10:;
-              cout << "Room 10\n";
-              locRoom4++;
-            break; //locRoom4 10
-
-            case 11:;
-              cout << "Room 11\n";
-              locRoom4++;
-            break; //locRoom4 11
-
-            case 12:;
-              cout << "Room 12\n";
-              locRoom4++;
-            break; //locRoom4 12
-
-            case 13:;
-              cout << "Room 13\n";
-              locRoom4++;
-            break; //locRoom4 13
-
-            case 14:;
-              cout << "Room 14\n";
-              locRoom4++;
-            break; //locRoom4 14
-          } //swtich locRoom4
-        } //while locRoom4
+        loc4();
+        keys++;
         locMain++;
       break; //case 4
-
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   return 0;
 }
+
