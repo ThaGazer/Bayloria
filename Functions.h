@@ -15,36 +15,47 @@
 
 #include <string>
 
+using namespace std;
+
 class Entity
 {
-  private:
-    int attackDam;
-    int health;
-    int armor;
-    double speed;
-    std::string name;
-  public:
-    Entity();
-    Entity(int, int, int, double);
-    int getHealth();
-    int getAttack();
-    int getArmor();
-    double getSpeed();
-    std::string getName();
-    void setName(std::string);
-    void setSpeed(double);
-    void setHealth(int);
-    void setAttack(int);
-    void setArmor(int);
-    int attack();
+private:
+	int attackDam;
+  int health;
+  int armor;
+  double speed;
+  string name;
+
+public:
+  Entity();
+  Entity(int, int, int, double);
+  int getHealth();
+  int getAttack();
+  int getArmor();
+  double getSpeed();
+  string getName();
+  void setName(string);
+  void setSpeed(double);
+  void setHealth(int);
+  void setAttack(int);
+  void setArmor(int);
 };
 
-class Player : Entity
+class Player : public Entity
 {
-  public:
-    Player();
-    Player(int, int, int, double, std::string);
-    int attack();
+private:
+	static const int INVENTORY_MAX = 30;
+
+	bool inventory[INVENTORY_MAX];
+	string inventoryString[INVENTORY_MAX];
+
+public:
+  Player();
+  Player(int, int, int, double, string, bool [], string []);
+	void getInventory();
+	void setInventory(bool [], string []);
+	void addItemToInventory(int);
+  
 };
 
 void instructions();
@@ -53,5 +64,6 @@ void loc2();
 void loc3();
 void loc4();
 
+void attack(Player, Entity);
 
 #endif
