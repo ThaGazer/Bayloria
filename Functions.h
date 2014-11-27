@@ -24,7 +24,7 @@ private:
   int health;
   int armor;
   double speed;
-  string name;
+  std::string name;
 
 public:
   Entity();
@@ -33,7 +33,7 @@ public:
   int getAttack();
   int getArmor();
   double getSpeed();
-  string getName();
+  std::string getName();
   void setName(string);
   void setSpeed(double);
   void setHealth(int);
@@ -44,17 +44,16 @@ public:
 class Player : public Entity
 {
 private:
-	static const int INVENTORY_MAX = 30;
-
-	bool inventory[INVENTORY_MAX];
-	string inventoryString[INVENTORY_MAX];
+  static const int INVENTORY_MAX = 30;
+  bool inventory[INVENTORY_MAX];
+  std::string inventoryString[INVENTORY_MAX];
 
 public:
   Player();
-  Player(int, int, int, double, string, bool [], string []);
-	void getInventory();
-	void setInventory(bool [], string []);
-	void addItemToInventory(int);
+  Player(int, int, int, double, std::string, bool [], std::string []);
+  void getInventory();
+  void setInventory(bool [], std::string []);
+  void addItemToInventory(int);
   
 };
 
