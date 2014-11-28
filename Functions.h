@@ -20,7 +20,7 @@ using namespace std;
 class Entity
 {
 private:
-	int attackDam;
+  int attackDam;
   int health;
   int armor;
   double speed;
@@ -33,7 +33,7 @@ public:
   int getAttack();
   int getArmor();
   double getSpeed();
-  std::string getName();
+  string getName();
   void setName(string);
   void setSpeed(double);
   void setHealth(int);
@@ -50,9 +50,9 @@ private:
 
 public:
   Player();
-  Player(int, int, int, double, std::string, bool [], std::string []);
+  Player(int, int, int, double, string, bool [], string []);
   void getInventory();
-  void setInventory(bool [], std::string []);
+  void setInventory(bool [], string []);
   void addItemToInventory(int);
   
 };
