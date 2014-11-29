@@ -20,11 +20,11 @@ using namespace std;
 class Entity
 {
 private:
-  int attackDam;
+	int attackDam;
   int health;
   int armor;
   double speed;
-  std::string name;
+  string name;
 
 public:
   Entity();
@@ -44,16 +44,23 @@ public:
 class Player : public Entity
 {
 private:
-  static const int INVENTORY_MAX = 30;
-  bool inventory[INVENTORY_MAX];
-  std::string inventoryString[INVENTORY_MAX];
+	static const int INVENTORY_MAX = 25;
+	int gold;
+
+	bool inventory[INVENTORY_MAX];
+	string inventoryString[INVENTORY_MAX];
+	int inventoryStats[INVENTORY_MAX + 1];
+	string inventoryType[INVENTORY_MAX + 1];
+	int inventoryNum[INVENTORY_MAX];
 
 public:
   Player();
-  Player(int, int, int, double, string, bool [], string []);
-  void getInventory();
-  void setInventory(bool [], string []);
-  void addItemToInventory(int);
+  Player(int, int, int, double, string, int, bool [], string [], int [], string [], int []);
+	int getGold();
+	void setGold(int);
+	void getInventory();
+	void setInventory(bool [], string [], int [], string [], int []);
+	void addItemToInventory(int);
   
 };
 
@@ -64,5 +71,15 @@ void loc3();
 void loc4();
 
 void attack(Player, Entity);
+void store(Player);
+
+void createWizard(Entity);
+void createKnight(Entity);
+void createArcher(Entity);
+
+void createPrimusRatticus(Entity);
+void createSecondusSerpent(Entity);
+void createStagOfTertius(Entity);
+void createLordFarquaad(Entity);
 
 #endif
