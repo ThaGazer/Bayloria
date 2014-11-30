@@ -970,73 +970,361 @@ void loc4()
     switch(locRoom4)
     {
       case 1:;
-        cout << "Room 1\n";
-        locRoom4++;
+        whatToDo(1);
+        cin >> decision;
+        if(decision == 1)
+        {
+          cout << "You look around the room and find nothing\n";
+        }
+        cout << "Which direction would you like to move?\n";
+        cin >> direct;
+        while(direct != 2)
+        {
+          cout << "That door is closed\n";
+          cin >> decision;
+        }
+        if(direct == 2)
+        {
+          direct = 0;
+          locRoom4 += 3;
+        }
       break; //locRoom4 1
 
       case 2:;
-        cout << "Room 2\n";
-        locRoom4++;
+        whatToDo(2);
+        cin >> decision;
+        if(decision == 1)
+        {
+          cout << "You look around the room and find a door key (1)\n";
+        }
+        cout << "Which direction would you like to move?\n";
+        cin >> direct;
+        while(direct == 1 || direct == 3)
+        {
+          cout << "That door is closed\n";
+          cin >> decision;
+        }
+        if(direct == 2)
+        {
+          direct = 0;
+          locRoom4 += 3;
+        }
+        if(direct == 4)
+        {
+          direct = 0;
+          locRoom4++;
+        }
       break; //locRoom4 2
 
       case 3:;
-        cout << "Room 3\n";
-        locRoom4++;
+        whatToDo(3);
+        cin >> decision;
+        if(decision == 1)
+        {
+          cout << "You look around the room and find a chest key (2)\n"
+                  "and a chest (4)";
+        }
+        cout << "Which direction would you like to move?\n";
+        cin >> direct;
+        while(direct == 1 || direct == 4)
+        {
+          cout << "That door is closed\n";
+          cin >> decision;
+        }
+        if(direct == 2)
+        {
+          direct = 0;
+          locRoom4 += 3;
+        }
+        if(direct == 3)
+        {
+          direct = 0;
+          locRoom4--;
+        }
       break; //locRoom4 3
 
       case 4:;
-        cout << "Room 4\n";
-        locRoom4++;
+        whatToDo(4);
+        cin >> decision;
+        if(decision == 1)
+        {
+          cout << "You look around the room and find a chest key (1)\n";
+        }
+        cout << "Which direction would you like to move?\n";
+        cin >> direct;
+        while(direct == 2 || direct == 3)
+        {
+          cout << "That door is closed\n";
+          cin >> decision;
+        }
+        if(direct == 1)
+        {
+          direct = 0;
+          locRoom4 -= 3;
+        }
+        if(direct == 4)
+        {
+          direct = 0;
+          locRoom4++;
+        }
       break; //locRoom4 4
 
       case 5:;
-        cout << "Room 5\n";
-        locRoom4++;
+        whatToDo(5);
+        cin >> decision;
+        if(decision == 1)
+        {
+          cout << "You look around the room and find a chest (3)\n";
+        }
+        cout << "Which direction would you like to move?\n";
+        cin >> direct;
+        if(direct == 1)
+        {
+          direct = 0;
+          locRoom4 -= 3;
+        }
+        if(direct == 2)
+        {
+          direct = 0;
+          locRoom4 += 3;
+        }
+        if(direct == 3)
+        {
+          direct = 0;
+          locRoom4--;
+        }
+        if(direct == 4)
+        {
+          direct = 0;
+          locRoom4++;
+        }
       break; //locRoom4 5
 
       case 6:;
-        cout << "Room 6\n";
-        locRoom4++;
+        whatToDo(6);
+        cin >> decision;
+        if(decision == 1)
+        {
+          cout << "You look around the room and find a door key (2)\n";
+        }
+        cout << "Which direction would you like to move?\n";
+        cin >> direct;
+        while(direct == 4)
+        {
+          cout << "That door is closed";
+          cin >> direct;
+        }
+        if(direct == 1)
+        {
+          direct = 0;
+          locRoom4 -= 3;
+        }
+        if(direct == 2)
+        {
+          direct = 0;
+          locRoom4 += 3;
+        }
+        if(direct == 3)
+        {
+          direct = 0;
+          locRoom4--;
+        }
       break; //locRoom4 6
 
       case 7:;
-        cout << "Room 7\n";
-        locRoom4++;
+        whatToDo(7);
+        cin >> decision;
+        if(decision == 1)
+        {
+          cout << "You look around the room and find a chest key (3)\n"
+                  "and a chest (1)\n";
+        }
+        cout << "Which direction would you like to move?\n";
+        cin >> direct;
+        while(direct == 1 || direct == 3)
+        {
+          cout << "That door is closed";
+          cin >> direct;
+        }
+        if(direct == 2)
+        {
+          direct = 0;
+          locRoom4 += 3;
+        }
+        if(direct == 4)
+        {
+          direct = 0;
+          locRoom4++;
+        }
       break; //locRoom4 7
 
       case 8:;
-        cout << "Room 8\n";
-        locRoom4++;
+        whatToDo(8);
+        cin >> decision;
+        if(decision == 1)
+        {
+          cout << "You look around the room and find nothing\n";
+        }
+        cout << "Which direction would you like to move?\n";
+        cin >> direct;
+        while(direct == 4)
+        {
+          cout << "That door is closed";
+          cin >> direct;
+        }
+        if(direct == 1)
+        {
+          direct = 0;
+          locRoom4 -= 3;
+        }
+        if(direct == 2)
+        {
+          direct = 0;
+          locRoom4 += 3;
+        }
+        if(direct == 3)
+        {
+          direct = 0;
+          locRoom4--;
+        }
       break; //locRoom4 8
 
       case 9:;
-        cout << "Room 9\n";
-        locRoom4++;
+        whatToDo(9);
+        cin >> decision;
+        if(decision == 1)
+        {
+          cout << "You look around the room and find nothing\n";
+        }
+        cout << "Which direction would you like to move?\n";
+        cin >> direct;
+        while(direct == 3 || direct == 4)
+        {
+          cout << "That door is closed";
+          cin >> direct;
+        }
+        if(direct == 1)
+        {
+          direct = 0;
+          locRoom4 -= 3;
+        }
+        if(direct == 2)
+        {
+          direct = 0;
+          locRoom4 += 3;
+        }
       break; //locRoom4 9
 
       case 10:;
-        cout << "Room 10\n";
-        locRoom4++;
+        whatToDo(10);
+        cin >> decision;
+        if(decision == 1)
+        {
+          cout << "You look around the room and find a door key (3)\n"
+                  "and a chest (2)\n";
+        }
+        cout << "Which direction would you like to move?\n";
+        cin >> direct;
+        while(direct != 1)
+        {
+          cout << "That door is closed";
+          cin >> direct;
+        }
+        if(direct == 1)
+        {
+          direct = 0;
+          locRoom4 -= 3;
+        }
       break; //locRoom4 10
 
       case 11:;
-        cout << "Room 11\n";
-        locRoom4++;
+        whatToDo(11);
+        cin >> decision;
+        if(decision == 1)
+        {
+          cout << "You look around the room and find a chest key (4)\n";
+        }
+        cout << "Which direction would you like to move?\n";
+        cin >> direct;
+        while(direct != 1)
+        {
+          cout << "That door is closed";
+          cin >> direct;
+        }
+        if(direct == 1)
+        {
+          direct = 0;
+          locRoom4 -= 3;
+        }
       break; //locRoom4 11
 
       case 12:;
-        cout << "Room 12\n";
-        locRoom4++;
+        whatToDo(12);
+        cin >> decision;
+        if(decision == 1)
+        {
+          cout << "You look around the room and find a door key (4)\n";
+        }
+        cout << "Which direction would you like to move?\n";
+        cin >> direct;
+        while(direct == 2 || direct == 3)
+        {
+          cout << "That door is closed";
+          cin >> direct;
+        }
+        if(direct == 1)
+        {
+          direct = 0;
+          locRoom4 -= 3;
+        }
+        if(direct == 4)
+        {
+          direct = 0;
+          locRoom4++;
+        }
       break; //locRoom4 12
 
       case 13:;
-        cout << "Room 13\n";
-        locRoom4++;
+       whatToDo(13);
+        cin >> decision;
+        if(decision == 1)
+        {
+          cout << "You look around the room and find nothing\n";
+        }
+        cout << "Which direction would you like to move?\n";
+        cin >> direct;
+        while(direct == 1 || direct == 2)
+        {
+          cout << "That door is closed";
+          cin >> direct;
+        }
+        if(direct == 3)
+        {
+          direct = 0;
+          locRoom4--;
+        }
+        if(direct == 4)
+        {
+          direct = 0;
+          locRoom4++;
+        }
       break; //locRoom4 13
 
       case 14:;
-        cout << "Room 14\n";
-        locRoom4++;
+        cout << "\nYou are in room 14";
+        cout << "4: Fight the boss?\n"
+                "3: Back to the Dungeon\n";
+        cin >> direct;
+        if(direct == 3)
+        {
+          direct = 0;
+          locRoom4--;
+        }
+        if(direct == 4)
+        {
+          direct = 0;
+          locRoom4++;
+        }
       break; //locRoom4 14
     } //swtich locRoom4
   } //while locRoom4
