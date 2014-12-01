@@ -129,7 +129,7 @@ Player::Player()
 	inventoryString[7] = "Amulet of Saphire";
 	inventoryStats[8] = 10; // health
 	inventoryType[8] = "health";
-	inventoryString[8] = "Right Index Ring"; 
+	inventoryString[8] = "Right Index Ring";
 	inventoryStats[9] = 5; // health
 	inventoryType[9] = "health";
 	inventoryString[9] = "Steed of Death";
@@ -236,43 +236,43 @@ void Player::setInventory(bool inv[], string invStr[], int invStats[], string in
 void Player::addItemToInventory(int itemNumber)
 {
 	inventory[itemNumber - 1] = true;
-	
+
 	if (inventoryString[itemNumber - 1] == "Bow and Arrows")
 	{
-		Player.setAttack(Player.getAttack() + inventoryStats[itemNumber - 1]);
-		Player.setSpeed(Player.getSpeed() + inventoryStats[itemNumber]);
+		setAttack(getAttack() + inventoryStats[itemNumber - 1]);
+		setSpeed(getSpeed() + inventoryStats[itemNumber]);
 	}
 	else if (inventoryType[itemNumber] == "attack" && inventoryNum[itemNumber - 1] > 6)
 	{
-		Player.setAttack(Player.getAttack() + inventoryStats[itemNumber]);
+		setAttack(getAttack() + inventoryStats[itemNumber]);
 	}
 	else if (inventoryType[itemNumber - 1] == "attack" && inventoryNum[itemNumber - 1] < 6)
 	{
-		Player.setAttack(Player.getAttack() + inventoryStats[itemNumber - 1]);
+		setAttack(getAttack() + inventoryStats[itemNumber - 1]);
 	}
 	else if(inventoryType[itemNumber] == "armor" && inventoryNum[itemNumber - 1] > 6)
 	{
-		Player.setArmor(Player.getArmor() + inventoryStats[itemNumber]);
+		setArmor(getArmor() + inventoryStats[itemNumber]);
 	}
 	else if(inventoryType[itemNumber - 1] == "armor" && inventoryNum[itemNumber - 1] < 6)
 	{
-		Player.setArmor(Player.getArmor() + inventoryStats[itemNumber - 1]);
+		setArmor(getArmor() + inventoryStats[itemNumber - 1]);
 	}
 	else if(inventoryType[itemNumber] == "health" && inventoryNum[itemNumber - 1] > 6)
 	{
-		Player.setHealth(Player.getHealth() + inventoryStats[itemNumber]);
+		setHealth(getHealth() + inventoryStats[itemNumber]);
 	}
 	else if(inventoryType[itemNumber] == "health" && inventoryNum[itemNumber - 1] < 6)
 	{
-		Player.setHealth(Player.getHealth() + inventoryStats[itemNumber - 1]);
+		setHealth(getHealth() + inventoryStats[itemNumber - 1]);
 	}
 	else if(inventoryType[itemNumber] == "speed" && inventoryNum[itemNumber - 1] > 6)
 	{
-		Player.setSpeed(Player.getSpeed() + inventoryStats[itemNumber]);
+		setSpeed(getSpeed() + inventoryStats[itemNumber]);
 	}
 	else if(inventoryType[itemNumber] == "speed" && inventoryNum[itemNumber - 1] < 6)
 	{
-		Player.setSpeed(Player.getSpeed() + inventoryStats[itemNumber - 1]);
+		setSpeed(getSpeed() + inventoryStats[itemNumber - 1]);
 	}
 }
 
