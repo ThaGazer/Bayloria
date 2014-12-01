@@ -10,6 +10,9 @@
   Date Created:   10/23/2014
 */
 
+#include "Entity.h"
+#include "Player.h"
+#include "stdafx.h"
 #include "Functions.h"
 #include <string>
 #include <iostream>
@@ -17,274 +20,15 @@
 
 using namespace std;
 
-Entity::Entity()
-{
-  name = "Justin Crawford";
-  attackDam = 0;
-  health = 0;
-  armor = 0;
-  speed = 0;
-}
-
-Entity::Entity(int att, int heal, int arm, double spe)
-{
-  attackDam = att;
-  health = heal;
-  armor = arm;
-  speed = spe;
-}
-
-int Entity::getHealth()
-{
-  return health;
-}
-
-int Entity::getAttack()
-{
-  return attackDam;
-}
-
-int Entity::getArmor()
-{
-  return armor;
-}
-
-double Entity::getSpeed()
-{
-  return speed;
-}
-
-string Entity::getName()
-{
-  return name;
-}
-
-void Entity::setName(string nam)
-{
-  name = nam;
-}
-void Entity::setSpeed(double spe)
-{
-  speed = spe;
-}
-
-void Entity::setHealth(int heal)
-{
-  health = heal;
-}
-
-void Entity::setAttack(int att)
-{
-  attackDam = att;
-}
-
-void Entity::setArmor(int arm)
-{
-  armor = arm;
-}
-
-Player::Player()
-{
-  setName("Bob The Slayer");
-  setAttack(0);
-  setHealth(0);
-  setArmor(0);
-  setSpeed(0);
-	setGold(0);
-
-	// initializes the arrays to false for the bool and empty space for the strings
-	for (int i = 0; i < INVENTORY_MAX; i++)
-	{
-		inventory[i] = false;
-	}
-
-	for (int i = 0; i < INVENTORY_MAX; i++)
-	{
-		inventoryNum[i] = i + 1;
-	}
-
-	inventoryString[0] = "Basic Sword";
-	inventoryStats[0] = 10; // atk
-	inventoryType[0] = "attack";
-	inventoryString[1] = "Leather Chest Plate";
-	inventoryStats[1] = 2; // armor
-	inventoryType[1] = "armor";
-	inventoryString[2] = "Right Pinky Ring";
-	inventoryStats[2] = 5; // health
-	inventoryType[2] = "health";
-	inventoryString[3] = "Right Ringfinger Ring";
-	inventoryStats[3] = 5; // health
-	inventoryType[3] = "health";
-	inventoryString[4] = "Master Key";
-	inventoryStats[4] = 5; // health
-	inventoryType[4] = "health";
-	inventoryString[5] = "Bow and Arrows";
-	inventoryStats[5] = 5; // atk
-	inventoryType[5] = "attack";
-	inventoryStats[6] = 1; // speed
-	inventoryType[6] = "speed";
-	inventoryString[6] = "Water Boots";
-	inventoryStats[7] = 2; // armor
-	inventoryType[7] = "armor";
-	inventoryString[7] = "Amulet of Saphire";
-	inventoryStats[8] = 10; // health
-	inventoryType[8] = "health";
-	inventoryString[8] = "Right Index Ring";
-	inventoryStats[9] = 5; // health
-	inventoryType[9] = "health";
-	inventoryString[9] = "Steed of Death";
-	inventoryStats[10] = 3; // speed
-	inventoryType[10] = "speed";
-	inventoryString[10] = "Battle Axe";
-	inventoryStats[11] = 15; // atk
-	inventoryType[11] = "attack";
-	inventoryString[11] = "Leather Pants";
-	inventoryStats[12] = 4; // armor
-	inventoryType[12] = "armor";
-	inventoryString[12] = "Right Thumb Ring";
-	inventoryStats[13] = 5; // health
-	inventoryType[13] = "health";
-	inventoryString[13] = "Aumlet of Emerald";
-	inventoryStats[14] = 10; // health
-	inventoryType[14] = "health";
-	inventoryString[14] = "Some Big Ass Acorn";
-	inventoryStats[15] = 5; // armor
-	inventoryType[15] = "armor";
-	inventoryString[15] = "Some Big Ass Hammer";
-	inventoryStats[16] = 30; // atk
-	inventoryType[16] = "attack";
-	inventoryString[16] = "Shield";
-	inventoryStats[17] = 7; // armor
-	inventoryType[17] = "armor";
-	inventoryString[17] = "Amulet of Ruby";
-	inventoryStats[18] = 10; // health
-	inventoryType[18] = "health";
-	inventoryString[18] = "Right Middle Ring";
-	inventoryStats[19] = 5; // health
-	inventoryType[19] = "health";
-	inventoryString[19] = "The Crown";
-	inventoryStats[20] = 0;
-	inventoryType[20] = "none";
-	inventoryString[20] = "Oblivion Staff";
-	inventoryStats[21] = 50;
-	inventoryType[21] = "attack";
-	inventoryString[21] = "Boots of Speed";
-	inventoryStats[22] = 5;
-	inventoryType[22] = "speed";
-	inventoryString[22] = "Dragon Scale Cape";
-	inventoryStats[23] = 50;
-	inventoryType[23] = "armor";
-	inventoryString[23] = "Belt of Youth";
-	inventoryStats[24] = 100;
-	inventoryType[24] = "health";
-	inventoryString[24] = "Blood Dagger";
-	inventoryStats[25] = 25;
-	inventoryType[25] = "attack";
-
-
-
-}
-
-Player::Player(int att, int heal, int arm, double spe, string nam, int gld, bool inv[], string invStr[], int invStats[], string invType[], int invNum[])
-{
-  setName(nam);
-  setAttack(att);
-  setHealth(heal);
-  setArmor(arm);
-  setSpeed(spe);
-	setInventory(inv, invStr, invStats, invType, invNum);
-	setGold(gld);
-}
-
-int Player::getGold()
-{
-	return gold;
-}
-
-void Player::setGold(int gld)
-{
-	gold = gld;
-}
-
-void Player::getInventory()
-{
-	for (int i = 0; i < INVENTORY_MAX; i++)
-	{
-		cout << inventory[i] << endl;
-	}
-
-	cout << "invstr" << endl;
-
-	for (int i = 0; i < INVENTORY_MAX; i++)
-	{
-		if (inventory[i] == true)
-		{
-			cout << inventoryString[i] << endl;
-		}
-	}
-}
-
-void Player::setInventory(bool inv[], string invStr[], int invStats[], string invType[], int invNum[])
-{
-	for (int i = 0; i < INVENTORY_MAX; i++)
-	{
-		inventory[i] = inv[i];
-		inventoryString[i] = invStr[i];
-	}
-}
-
-void Player::addItemToInventory(int itemNumber)
-{
-	inventory[itemNumber - 1] = true;
-
-	if (inventoryString[itemNumber - 1] == "Bow and Arrows")
-	{
-		setAttack(getAttack() + inventoryStats[itemNumber - 1]);
-		setSpeed(getSpeed() + inventoryStats[itemNumber]);
-	}
-	else if (inventoryType[itemNumber] == "attack" && inventoryNum[itemNumber - 1] > 6)
-	{
-		setAttack(getAttack() + inventoryStats[itemNumber]);
-	}
-	else if (inventoryType[itemNumber - 1] == "attack" && inventoryNum[itemNumber - 1] < 6)
-	{
-		setAttack(getAttack() + inventoryStats[itemNumber - 1]);
-	}
-	else if(inventoryType[itemNumber] == "armor" && inventoryNum[itemNumber - 1] > 6)
-	{
-		setArmor(getArmor() + inventoryStats[itemNumber]);
-	}
-	else if(inventoryType[itemNumber - 1] == "armor" && inventoryNum[itemNumber - 1] < 6)
-	{
-		setArmor(getArmor() + inventoryStats[itemNumber - 1]);
-	}
-	else if(inventoryType[itemNumber] == "health" && inventoryNum[itemNumber - 1] > 6)
-	{
-		setHealth(getHealth() + inventoryStats[itemNumber]);
-	}
-	else if(inventoryType[itemNumber] == "health" && inventoryNum[itemNumber - 1] < 6)
-	{
-		setHealth(getHealth() + inventoryStats[itemNumber - 1]);
-	}
-	else if(inventoryType[itemNumber] == "speed" && inventoryNum[itemNumber - 1] > 6)
-	{
-		setSpeed(getSpeed() + inventoryStats[itemNumber]);
-	}
-	else if(inventoryType[itemNumber] == "speed" && inventoryNum[itemNumber - 1] < 6)
-	{
-		setSpeed(getSpeed() + inventoryStats[itemNumber - 1]);
-	}
-}
-
 void instructions()
 {
-  cout <<  "\nThe point of the game is to defeat all four of the main "
+  cout <<  "The point of the game is to defeat all four of the main "
               "bosses\n and progress through the 4 levels of Bayloria\n"
               "To play the game all you have to do is enter the four numbers\n"
-              "that relate to the door you want to go through\n"
-              "1 to go up, 2 to go down, 3 to go right, and 4 to go right\n"
+							"that relate to the door you want to go through:\n"
+              "1 to go north, 2 to go south, 3 to go west, and 4 to go east\n"
               "Certain door will be locked, you can unlock these doors\n"
-              "but only if you find the door keys"
+              "but only if you find the door keys\n"
               "There are treasure chest that are placed throughout the 4 maps\n"
               "They also have keys that are spread throughout the map\n"
               "You must collect all 4 items on the floor then kill the Boss\n"
@@ -292,148 +36,622 @@ void instructions()
               "To finish the game you must kill the final Boss and present\n"
               "all 20 items collected throughout the game.\n\n";
 }
+
 void whatToDo(int a)
 {
-  cout << "\nYou are in room " << a << endl;
-  cout << "What would you like to do in this room?\n";
+	cout << "\nLocation " << a << endl;
+  cout << "What would you like to do here?\n";
   cout << "[1] search the room\n"
           "[2] move on to the next room\n";
 }
 
-void loc1()
+void loc1(Player plyr)
 {
+	bool redKey = true; // all keys true because no locks first floor
+	bool greenKey = true; // all keys true because no locks first floor
+	bool blueKey = true; // all keys true because no locks first floor
+	bool yellowKey = true; // all keys true because no locks first floor
+
+	int itemCount = 0;
+	bool open = false;
+	bool foughtBoss = false;
+
   int locRoom1 = 1;
   int decision = 0;
   int direct = 0;
-  int passCount1 = 0;
-  int passCount2 = 0;
-  int passCount3 = 0;
-  int passCount4 = 0;
+  int passitemCount[5];
+
+	for(int i = 0; i < 5; i++)
+	{
+		passitemCount[i] = 0;
+	}
 
   cout << "\nMap loc 1";
   while(locRoom1 < 6)
   {
+		bool move = false;
+		bool validDecision = false;
+		bool yesNo = false;
+
     switch(locRoom1)
     {
       case 1:;
-        whatToDo(1);
-        cin >> decision;
-        if(decision == 1)
-        {
-          cout << "You look around the room and find a chest (1) and"
-                  " a chest key (3)\n";
-          passCount1++;
-        }
-        cout << "Which direction would you like to move?\n";
-        cin >> direct;
-        while(direct != 4)
-        {
-          cout << "That door is closed\n";
-          cin >> direct;
-        }
-        if(direct == 4)
-        {
-          direct = 0;
-          locRoom1++;
-        }
+				if(passitemCount[0] == 0)
+				{
+					passitemCount[0]++; // +1 pass into this room
+					while(move == false && validDecision == false)
+					{
+						whatToDo(1);
+						cin >> decision;
+						cout << endl;
+
+						if(decision == 1)
+						{
+							cout << "You look around the room and find a *red* chest...\n"
+								<< "It doesn't seem to be locked.\nWould you like to open the"
+								<< " chest?\n[y] yes\n[n] no\n";
+
+							openTheChest(redKey, yesNo, plyr, itemCount, open);
+							if (open == true)
+							{
+								plyr.addItemToInventory(itemCount, plyr);
+								cout << "This item will get you started on your journey and help you escape\n"
+									<< "the Dungeon of Primus. You can now more easily defeat enemies with\n"
+									<< "this heavensent blade.\n";
+							}
+						} // if look around
+						else if(decision == 2)
+						{
+							passitemCount[0]++; // next time you enter room, will display different message...
+							move = true;
+							validDecision = true;
+						} // if move
+						else
+						{
+							cout << "Invalid command!\n";
+							validDecision = false;
+						} // invalid input
+					} // while not move and not good input
+
+					validDecision = false;
+					while(validDecision == false)
+					{
+						cout << "Which direction would you like to move?\n"
+							<< "[1] North\n[2] South\n[3] West\n[4] East\n";
+						cin >> direct;
+						cout << endl;
+
+						if(direct == 1 || direct == 2 || direct == 3)
+						{
+							cout << "There is not a door this way, the only thing in front of "
+								<<"you is a stone wall.\nTry a different direction.\n";
+							validDecision = false;
+						}
+						else if(direct == 4)
+						{
+							validDecision = true;
+							direct = 0;
+							locRoom1++;
+						}
+						else
+						{
+							cout << "Invalid command!\n";
+							validDecision = false;
+						}
+					}
+				} // if not been to room before
+				else
+				{
+					passitemCount[0]++;
+					cout << "You have visited this room before...\nIn fact this is your "
+						<< passitemCount[0] << " pass into this room...\n";
+						
+					while(move == false && validDecision == false)
+					{
+						whatToDo(1);
+						cin >> decision;
+						cout << endl;
+
+						if (decision == 1)
+						{
+							if (open == true)
+							{
+								cout << "All that is here is an opened *red* chest.\n";
+							}
+							else
+							{
+								cout << "There is an UNOPENED *red* chest.\nWould you like to open the"
+								<< " chest?\n[y] yes\n[n] no\n";
+
+								openTheChest(redKey, yesNo, plyr, itemCount, open);
+								if (open == true)
+								{
+									plyr.addItemToInventory(itemCount, plyr);
+									cout << "This item will get you started on your journey and help you escape\n"
+										<< "the Dungeon of Primus. You can now more easily defeat enemies with\n"
+										<< "this heavensent blade.\n";
+								}
+							}
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					} // while not move and not good input
+
+					validDecision = false;
+					while(validDecision == false)
+					{
+						cout << "Which direction would you like to move?\n"
+							<< "[1] North\n[2] South\n[3] West\n[4] East\n";
+						cin >> direct;
+						cout << endl;
+
+						if(direct == 1 || direct == 2 || direct == 3)
+						{
+							cout << "There is not a door this way, the only thing in front of "
+								<<"you is a stone wall.\nTry a different direction.\n";
+							validDecision = false;
+						}
+						else if(direct == 4)
+						{
+							validDecision = true;
+							direct = 0;
+							locRoom1++;
+						}
+						else
+						{
+							cout << "Invalid command!\n";
+							validDecision = false;
+						}
+					}
+				} // else already been to room
       break; //locRoom1 1
 
       case 2:;
-        whatToDo(2);
-        cin >> decision;
-        if(decision == 1)
-        {
-          cout << "You look around the room and find a chest (2) and"
-                  " a chest key (1)\n";
-        }
-        cout << "Which direction would you like to move?\n";
-        cin >> direct;
-        while(direct == 1)
-        {
-          cout << "That door is closed\n";
-          cin >> direct;
-        }
-        if(direct == 2)
-        {
-          direct = 0;
-          locRoom1++;
-        }
-        if(direct == 3)
-        {
-          direct = 0;
-          locRoom1--;
-        }
-        if(direct == 4)
-        {
-          direct = 0;
-          locRoom1 += 2;
-        }
+
+				if(passitemCount[1] == 0)
+				{
+					passitemCount[1]++; // +1 pass into this room
+					while(move == false && validDecision == false)
+					{
+						whatToDo(2);
+						cin >> decision;
+						cout << endl;
+
+						if(decision == 1)
+						{
+							cout << "You look around the room and find a *green* chest...\n"
+									<< "It doesn't seem to be locked.\nWould you like to open the"
+									<< " chest?\n[y] yes\n[n] no\n";
+
+							openTheChest(redKey, yesNo, plyr, itemCount, open);
+							if (open == true)
+							{
+								plyr.addItemToInventory(itemCount, plyr);
+								cout << "This item will partially protect you from enemy strikes!\n";
+							}
+						}
+						else if(decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							cout << "Invalid command!\n";
+							validDecision = false;
+						}
+					}
+
+					validDecision = false;
+					while(validDecision == false)
+					{
+						cout << "Which direction would you like to move?\n"
+							<< "[1] North\n[2] South\n[3] West\n[4] East\n";
+						cin >> direct;
+						cout << endl;
+
+						if(direct == 1)
+						{
+							cout << "There is no door this way, just a stone wall\n";
+						}
+						else if(direct == 2)
+						{
+							validDecision = true;
+							direct = 0;
+							locRoom1++;
+						}
+						else if(direct == 3)
+						{
+							validDecision = true;
+							direct = 0;
+							locRoom1--;
+						}
+						else if(direct == 4)
+						{
+							validDecision = true;
+							direct = 0;
+							locRoom1 += 2;
+						}
+						else
+						{
+							cout << "Invalid command!\n";
+							validDecision = false;
+						}
+					}
+				}
+				else
+				{
+					passitemCount[1]++;
+					cout << "You have visited this room before...\nIn fact this is your "
+						<< passitemCount[1] << " pass into this room...\n";
+
+					while(move == false && validDecision == false)
+					{
+						whatToDo(2);
+						cin >> decision;
+						cout << endl;
+
+						if (decision == 1)
+						{
+							if (open == true)
+							{
+								cout << "All that is here is an opened *green* chest.\n";
+							}
+							else
+							{
+								cout << "There is an UNOPENED *green* chest.\nWould you like to open the"
+									<< " chest?\n[y] yes\n[n] no\n";
+
+								openTheChest(redKey, yesNo, plyr, itemCount, open);
+								if (open == true)
+								{
+									plyr.addItemToInventory(itemCount, plyr);
+									cout << "This item will partially protect you from enemy strikes!\n";
+								}
+							}
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					} // while not move and not good input
+
+					validDecision = false;
+					while(validDecision == false)
+					{
+						cout << "Which direction would you like to move?\n"
+							<< "[1] North\n[2] South\n[3] West\n[4] East\n";
+						cin >> direct;
+						cout << endl;
+
+						if(direct == 1)
+						{
+							cout << "There is no door this way, just a stone wall\n";
+						}
+						else if(direct == 2)
+						{
+							validDecision = true;
+							direct = 0;
+							locRoom1++;
+						}
+						else if(direct == 3)
+						{
+							validDecision = true;
+							direct = 0;
+							locRoom1--;
+						}
+						else if(direct == 4)
+						{
+							validDecision = true;
+							direct = 0;
+							locRoom1 += 2;
+						}
+						else
+						{
+							cout << "Invalid command!\n";
+							validDecision = false;
+						}
+					}
+				} // else already been to room
       break; //locRoom1 2
 
       case 3:;
-        whatToDo(3);
-        cin >> decision;
-        if(decision == 1)
-        {
-          cout << "You look around the room and find a chest (3) and"
-                  " a chest key (4)\n";
-        }
-        cout << "Which direction would you like to move?\n";
-        cin >> direct;
-        while(direct != 1)
-        {
-          cout << "That door is closed\n";
-          cin >> direct;
-        }
-        if(direct == 1)
-        {
-          direct = 0;
-          locRoom1--;
-        }
+				if(passitemCount[2] == 0)
+				{
+					passitemCount[2]++; // +1 pass into this room
+					while(move == false && validDecision == false)
+					{
+						whatToDo(3);
+						cin >> decision;
+						cout << endl;
+
+						if(decision == 1)
+						{
+							cout << "You look around the room and find a *blue* chest\n"
+									<< "It doesn't seem to be locked.\nWould you like to open the"
+									<< " chest?\n[y] yes\n[n] no\n";
+
+							openTheChest(redKey, yesNo, plyr, itemCount, open);
+							if (open == true)
+							{
+								plyr.addItemToInventory(itemCount, plyr);
+								cout << "This item gives life to its owner.\nIt is meant to be worn on the pinky finger.\n";
+							}
+						}
+						else if(decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							cout << "Invalid command!\n";
+							validDecision = false;
+						}
+					}
+
+					validDecision = false;
+					while(validDecision == false)
+					{
+						cout << "Which direction would you like to move?\n"
+							<< "[1] North\n[2] South\n[3] West\n[4] East\n";
+						cin >> direct;
+						cout << endl;
+
+						if(direct != 1)
+						{
+							cout << "Only a wall stands before you...\n";
+						}
+						else if(direct == 1)
+						{
+							validDecision = true;
+							direct = 0;
+							locRoom1--;
+						}
+						else
+						{
+							cout << "Invalid command!\n";
+						}
+					}
+				}
+				else
+				{
+					passitemCount[2]++;
+					cout << "You have visited this room before...\nIn fact this is your "
+						<< passitemCount[2] << " pass into this room...\n";
+
+					while(move == false && validDecision == false)
+					{
+						whatToDo(3);
+						cin >> decision;
+						cout << endl;
+
+						if (decision == 1)
+						{
+							if (open == true)
+							{
+								cout << "All that is here is an opened *blue* chest.\n";
+							}
+							else
+							{
+								cout << "There is an UNOPENED *blue* chest.\n";
+								openTheChest(redKey, yesNo, plyr, itemCount, open);
+								if (open == true)
+								{
+									plyr.addItemToInventory(itemCount, plyr);
+									cout << "This item gives life to its owner.\nIt is meant to be worn on the pinky finger.\n";
+								}
+							}
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					} // while not move and not good input
+
+					validDecision = false;
+					while(validDecision == false)
+					{
+						cout << "Which direction would you like to move?\n"
+							<< "[1] North\n[2] South\n[3] West\n[4] East\n";
+						cin >> direct;
+						cout << endl;
+
+						if(direct != 1)
+						{
+							cout << "Only a wall stands before you...\n";
+						}
+						else if(direct == 1)
+						{
+							validDecision = true;
+							direct = 0;
+							locRoom1--;
+						}
+						else
+						{
+							cout << "Invalid command!\n";
+						}
+					}
+				} // else already been to room
       break; //locRoom1 3
 
       case 4:;
-        whatToDo(4);
-        cin >> decision;
-        if(decision == 1)
-        {
-          cout << "You look around the room and find a chest (4) and"
-                  " a chest key (2)\n";
-        }
-        cout << "Which direction would you like to move?\n";
-        cin >> direct;
-        while(direct == 1 || direct == 2)
-        {
-          cout << "That door is closed\n";
-          cin >> direct;
-        }
-        if(direct == 3)
-        {
-          direct = 0;
-          locRoom1 -= 2;
-        }
-        if(direct == 4)
-        {
-          direct = 0;
-          locRoom1++;
-        }
-      break; //locRoom1 4
+				if(passitemCount[3] == 0)
+				{
+					passitemCount[3]++; // +1 pass into this room
+					while(move == false && validDecision == false)
+					{
+						whatToDo(4);
+						cin >> decision;
+						cout << endl;
 
-      case 5:;
-        cout << "Room 5\n";
-        cout << "4: Fight the boss?\n"
-                "3: Back to the Dungeon\n";
-        cin >> direct;
-        if(direct == 3)
-        {
-          direct = 0;
-          locRoom1 --;
-        }
-        if(direct == 4)
-        {
-          direct = 0;
-          locRoom1 = 6;
-        }
+						if(decision == 1)
+						{
+							cout << "You look around the room and find a *yellow* chest\n"
+								<< "It doesn't seem to be locked.\nWould you like to open the"
+								<< " chest?\n[y] yes\n[n] no\n";
+
+							openTheChest(redKey, yesNo, plyr, itemCount, open);
+							if (open == true)
+							{
+								plyr.addItemToInventory(itemCount, plyr);
+							}
+						}
+						else if(decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							cout << "Invalid command!\n";
+							validDecision = false;
+						}
+					}
+
+					validDecision = false;
+					while(validDecision == false)
+					{
+						cout << "Which direction would you like to move?\n"
+							<< "[1] North\n[2] South\n[3] West\n[4] East\n";
+						cin >> direct;
+						cout << endl;
+
+						if(direct == 1 || direct == 2)
+						{
+							cout << "There is no door this way, just a wall\n";
+						}
+						else if(direct == 3)
+						{
+							validDecision = true;
+							direct = 0;
+							locRoom1 -= 2;
+						}
+						else if(direct == 4)
+						{
+							validDecision = true;
+							direct = 0;
+							locRoom1++;
+						}
+						else
+						{
+							cout << "Invalid command!\n";
+						}
+					}
+				}
+				else
+				{
+					passitemCount[3]++;
+					cout << "You have visited this room before...\nIn fact this is your "
+						<< passitemCount[3] << " pass into this room...\n"
+						<< "It appears all that is left in here is an opened chest.\n";
+
+					while(move == false && validDecision == false)
+					{
+						whatToDo(4);
+						cin >> decision;
+						cout << endl;
+
+						if (decision == 1)
+						{
+							cout << "All that is here is an opened *yellow* chest.\n";
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					} // while not move and not good input
+
+					validDecision = false;
+					while(validDecision == false)
+					{
+						cout << "Which direction would you like to move?\n"
+							<< "[1] North\n[2] South\n[3] West\n[4] East\n";
+						cin >> direct;
+						cout << endl;
+
+						if(direct == 1 || direct == 2)
+						{
+							cout << "There is no door this way, just a wall\n";
+						}
+						else if(direct == 3)
+						{
+							validDecision = true;
+							direct = 0;
+							locRoom1 -= 2;
+						}
+						else if(direct == 4)
+						{
+							validDecision = true;
+							direct = 0;
+							locRoom1++;
+						}
+						else
+						{
+							cout << "Invalid command!\n";
+						}
+					}
+				} // else already been to room*/
+			break; //locRoom1 4
+
+			case 5:;
+				passitemCount[4]++;
+				cout << "Room 5\n";
+				cout << "4: Fight the boss?\n"
+								"3: Back to the Dungeon\n";
+				cin >> direct;
+				cout << endl;
+
+				if(direct == 3)
+				{
+					direct = 0;
+					locRoom1 --;
+				}
+				if(direct == 4 && foughtBoss == false)
+				{
+					cout << "You spot a giant rat...\nAnd he's coming right at you!\n";
+					foughtBoss = true;
+					Entity boss1;
+					createPrimusRatticus(boss1); // create first boss
+
+					boss1.displayEntityStats(boss1);
+
+					attack(plyr, boss1);
+
+					if(boss1.getHealth() < 1)
+					{
+						itemCount++;
+						cout << "You have defeated Raticus Primus!\n";
+						plyr.addGold(plyr, 20);
+						plyr.addItemToInventory(itemCount, plyr);
+						plyr.getInventory(plyr);
+					}
+
+					direct = 0;
+					locRoom1 = 6;
+				}
       break; //locRoom1 5
     } //swtich locRoom1
   } //while locRoom1
@@ -1330,33 +1548,62 @@ void loc4()
   } //while locRoom4
 }
 
-void attack(Player player, Entity entity)
+void attack(Player plyr, Entity entity)
 {
-	while(player.getHealth() > 0 && entity.getHealth() > 0)
-	{
-		int healthEnemy = entity.getHealth();
-		int yourHealth = player.getHealth();
+	int turn = 0;
+	char cont = '\0';
+	int healthEnemy = entity.getHealth();
+	int yourHealth = plyr.getHealth();
 
-		if (player.getSpeed() > entity.getSpeed())
+	if (plyr.getSpeed() > entity.getSpeed())
+	{
+		turn++;
+		cout << "You attack first!" << endl;
+		entity.setHealth(healthEnemy -= plyr.getAttack() - entity.getArmor());
+	}
+	else
+	{
+		cout << "The enemy was quicker! It attacks you first!" << endl;
+		plyr.setHealth(yourHealth -= entity.getAttack() - plyr.getArmor());
+	}
+
+	while(plyr.getHealth() > 0 && entity.getHealth() > 0)
+	{
+		if (turn % 2 == 0)
 		{
-			cout << "You attack first!" << endl;
-			entity.setHealth(healthEnemy -= player.getAttack() - entity.getArmor());
+			cout << "It's your turn to attack!\nPress [n] to proceed to next turn...";
+			cin >> cont;
+			while (cont != 'n')
+			{
+				cout << "Invalid command!\n";
+			}
+			plyr.setHealth(yourHealth -= entity.getAttack() - plyr.getArmor());
 		}
 		else
 		{
-			cout << "The enemy was quicker! It attacks you first!" << endl;
-			player.setHealth(yourHealth -= entity.getAttack() - player.getArmor());
+			cout << "It's the enemy's turn to attack!\nPress [n] to proceed to next turn...";
+			cin >> cont;
+			while (cont != 'n')
+			{
+				cout << "Invalid command!\n";
+			}
+			entity.setHealth(healthEnemy -= plyr.getAttack() - entity.getArmor());
 		}
+
+		plyr.displayPlayerStats(plyr);
+		entity.displayEntityStats(entity);
+		turn++;
 	}
 }
 
-void store(Player plyr)
+void store(Player &plyr)
 {
 	int choice = 0;
 	int buy = 0;
 	bool exit = false;
 	cout << "Welcome to the Secret Store!\nWould you like to buy something?" << endl;
-	cout << "1. No\n2. Not sure yet, what do you have to offer?" << endl;
+	cout << "[1] No\n[2] Not sure yet, what do you have to offer?" << endl;
+	cin >> choice;
 
 	switch(choice)
 	{
@@ -1366,20 +1613,22 @@ void store(Player plyr)
 	case 2:
 		while(exit = false)
 		{
-			cout << "Here are the items available:\n\n1. Oblivion Staff\n+50 Attack\n"
-				<< "100g\n\n2. Boots of Speed\n+5 Speed\n40g\n\n3. Dragon Scale Cape\n"
-				<< "+50 Armor\n100g\n\n4. Belt of Youth\n+100 HP\n60g\n\n"
-				<< "5. Blood Dagger\n+25 Attack\n40g\n\nSelect one of these items or"
-				<< " press 6. to exit the shop.\n\n (You have" << plyr.getGold() << "g)"
+			cout << "Here are the items available:\n\n[1] Oblivion Staff\n+50 Attack\n"
+				<< "100g\n\n[2] Boots of Speed\n+5 Speed\n40g\n\n[3] Dragon Scale Cape\n"
+				<< "+50 Armor\n100g\n\n[4] Belt of Youth\n+100 HP\n60g\n\n"
+				<< "[5] Blood Dagger\n+25 Attack\n40g\n\nSelect one of these items or"
+				<< " press [6] to exit the shop.\n\n (You have" << plyr.getGold() << "g)"
 				<< endl;
+			cin >> buy;
+
 			switch(buy)
 			{
 				case 1:
 					if(plyr.getGold() >= 100)
 					{
 						cout << "You have bought the Oblivion Staff!\n";
-						plyr.addItemToInventory(21);
-						plyr.setGold(plyr.getGold() - 100);
+						plyr.addItemToInventory(21, plyr);
+						plyr.subtGold(plyr, 100);
 					}
 					else
 					{
@@ -1392,8 +1641,8 @@ void store(Player plyr)
 					if(plyr.getGold() >= 40)
 					{
 						cout << "You have bought the Boots of Speed!\n";
-						plyr.addItemToInventory(22);
-						plyr.setGold(plyr.getGold() - 40);
+						plyr.addItemToInventory(22, plyr);
+						plyr.subtGold(plyr, 40);
 					}
 					else
 					{
@@ -1406,8 +1655,8 @@ void store(Player plyr)
 					if(plyr.getGold() >= 100)
 					{
 						cout << "You have bought the Dragon Scale Cape!\n";
-						plyr.addItemToInventory(23);
-						plyr.setGold(plyr.getGold() - 100);
+						plyr.addItemToInventory(23, plyr);
+						plyr.subtGold(plyr, 100);
 					}
 					else
 					{
@@ -1420,8 +1669,8 @@ void store(Player plyr)
 					if(plyr.getGold() >= 60)
 					{
 						cout << "You have bought the Belt of Youth!\n";
-						plyr.addItemToInventory(24);
-						plyr.setGold(plyr.getGold() - 60);
+						plyr.addItemToInventory(24, plyr);
+						plyr.subtGold(plyr, 60);
 					}
 					else
 					{
@@ -1434,8 +1683,8 @@ void store(Player plyr)
 					if(plyr.getGold() >= 40)
 					{
 						cout << "You have bought the Blood Dagger!\n";
-						plyr.addItemToInventory(25);
-						plyr.setGold(plyr.getGold() - 40);
+						plyr.addItemToInventory(25, plyr);
+						plyr.subtGold(plyr, 40);
 					}
 					else
 					{
@@ -1457,7 +1706,7 @@ void store(Player plyr)
 	}
 }
 
-void createWizard(Entity wzrd)
+void createWizard(Entity &wzrd)
 {
 	wzrd.setName("Wizard");
 	wzrd.setAttack(20);
@@ -1466,7 +1715,7 @@ void createWizard(Entity wzrd)
 	wzrd.setSpeed(2);
 }
 
-void createKnight(Entity knght)
+void createKnight(Entity &knght)
 {
 	knght.setName("Knight");
 	knght.setAttack(15);
@@ -1475,7 +1724,7 @@ void createKnight(Entity knght)
 	knght.setSpeed(1);
 }
 
-void createArcher(Entity archr)
+void createArcher(Entity &archr)
 {
 	archr.setName("Archer");
 	archr.setAttack(15);
@@ -1484,16 +1733,16 @@ void createArcher(Entity archr)
 	archr.setSpeed(4);
 }
 
-void createPrimusRatticus(Entity priRat)
+void createPrimusRatticus(Entity &priRat)
 {
 	priRat.setName("Primus Ratticus");
 	priRat.setAttack(25);
 	priRat.setHealth(25);
-	priRat.setArmor(8);
+	priRat.setArmor(5);
 	priRat.setSpeed(3);
 }
 
-void createSecondusSerpent(Entity secSerp)
+void createSecondusSerpent(Entity &secSerp)
 {
 	secSerp.setName("Secondus Serpent");
 	secSerp.setAttack(30);
@@ -1502,7 +1751,7 @@ void createSecondusSerpent(Entity secSerp)
 	secSerp.setSpeed(5);
 }
 
-void createStagOfTertius(Entity stagTert)
+void createStagOfTertius(Entity &stagTert)
 {
 	stagTert.setName("Stag of Tertius");
 	stagTert.setAttack(20);
@@ -1511,11 +1760,48 @@ void createStagOfTertius(Entity stagTert)
 	stagTert.setSpeed(4);
 }
 
-void createLordFarquaad(Entity lordF)
+void createLordFarquaad(Entity &lordF)
 {
 	lordF.setName("Lord Farquaad");
 	lordF.setAttack(100);
 	lordF.setHealth(100);
 	lordF.setArmor(35);
 	lordF.setSpeed(10);
+}
+
+void openTheChest(bool key, bool yN, Player plyr, int &itemCount, bool &open)
+{
+	open = false;
+	char oC;
+	cin >> oC;
+	cout << endl;
+	switch(oC)
+	{
+		while(yN == false) // input validation
+		{
+			case 'y':
+				if(key == true)
+				{
+					cout << "You have the key for this chest and you unlock it!\n";
+					cout << "You have aquired the " << plyr.getInventoryString(itemCount) << "!\n";
+					open = true;
+				}
+				else
+				{
+					cout << "You do not have the key to open this chest yet!\n";
+				}
+				yN = true;
+			break;
+
+			case 'n':
+				cout << "You decide not to open the chest.\n";
+				yN = true;
+			break;
+
+			default:
+				cout << "Invalid choice! Would you like to open the chest?\n"
+					<< "[y] yes\n[n] no\n";
+		}
+	}
+	itemCount++;
 }
