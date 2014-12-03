@@ -102,9 +102,22 @@ Player::Player()
 	inventoryString[24] = "Blood Dagger";
 	inventoryStats[25] = 25;
 	inventoryType[25] = "attack";
+
+	for (int i = 0; i< 5; i++)
+	{
+		doorKeys[i] = false;
+	}
+
+	doorKeyName[0] = "key 1";
+	doorKeyName[1] = "key 2";
+	doorKeyName[2] = "key 3";
+	doorKeyName[3] = "key 4";
+	doorKeyName[4] = "key 5";
+
 }
 
-Player::Player(int att, int heal, int totHeal, int arm, int spe, string nam, int gld, bool inv[], string invStr[], int invStats[], string invType[], int invNum[])
+Player::Player(int att, int heal, int totHeal, int arm, int spe, string nam, int gld,
+	bool inv[], string invStr[], int invStats[], string invType[], int invNum[], bool keys[], string keyNames[])
 {
   setName(nam);
   setAttack(att);
@@ -163,6 +176,13 @@ void Player::getInventory(Player &plyr)
 		}
 	}
 	cout << "\n" << plyr.getGold() << "g\n";
+	for (int i = 0; i < 5; i++)
+	{
+		if (plyr.getDoorKeys(i) == true)
+		{
+			cout << plyr.getKeyNames(i) << endl;
+		}
+	}
 	cout << "_______________________________________________\n\n";
 }
 
@@ -218,6 +238,21 @@ void Player::addItemToInventory(int itemNumber, Player &plyr)
 	{
 		plyr.setSpeed(plyr.getSpeed() + inventoryStats[itemNumber - 1]);
 	}
+}
+
+bool Player::getDoorKeys(int i)
+{
+	return doorKeys[i - 1];
+}
+
+string Player::getKeyNames(int i)
+{
+	return doorKeyName[i - 1];
+}
+
+void Player::addKeyToInventory(int keyNum)
+{
+	doorKeys[keyNum-1] = true;
 }
 
 string Player::getInventoryString(int num)
