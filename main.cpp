@@ -9,7 +9,7 @@
                   Once you defeat him you win the game.
   Date Created:   10/23/2014
 */
-
+/*
 #include <iostream>
 #include <cstdlib>
 
@@ -92,4 +92,30 @@ int main()
 
   return 0;
 }
+*/
 
+#include "Functions.h"
+#include "Entity.h"
+#include "Player.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+	Player player1;
+	player1.setName("Cole Crawford");
+	player1.setAttack(10);
+	player1.setTotalHealth(50);
+	player1.setHealth(50);
+	player1.setArmor(0);
+	player1.setSpeed(1);
+	player1.setGold(0);
+
+	instructions();
+	loc1(player1);
+
+	system("PAUSE");
+	return 0;
+}
