@@ -10,6 +10,7 @@
   Date Created:   10/23/2014
 */
 
+#include "stdafx.h"
 #include "Entity.h"
 #include "Player.h"
 #include "stdafx.h"
@@ -39,7 +40,7 @@ void instructions()
 
 void whatToDo(int a)
 {
-	cout << "\nLocation " << a << endl;
+	cout << "\Room " << a << endl;
   cout << "What would you like to do here?\n";
   cout << "[1] search the room\n"
           "[2] move on to the next room\n";
@@ -55,18 +56,19 @@ void loc1(Player plyr)
 	int itemCount = 0;
 	bool open = false;
 	bool foughtBoss = false;
+	char pickUp = '\0';
 
   int locRoom1 = 1;
   int decision = 0;
   int direct = 0;
-  int passitemCount[5];
+  int passCount[5];
 
 	for(int i = 0; i < 5; i++)
 	{
-		passitemCount[i] = 0;
+		passCount[i] = 0;
 	}
 
-  cout << "\nMap loc 1";
+  cout << "\nMap loc 1" << endl;
   while(locRoom1 < 6)
   {
 		bool move = false;
@@ -76,9 +78,9 @@ void loc1(Player plyr)
     switch(locRoom1)
     {
       case 1:;
-				if(passitemCount[0] == 0)
+				if(passCount[0] == 0)
 				{
-					passitemCount[0]++; // +1 pass into this room
+					passCount[0]++; // +1 pass into this room
 					while(move == false && validDecision == false)
 					{
 						whatToDo(1);
@@ -86,23 +88,30 @@ void loc1(Player plyr)
 						cout << endl;
 
 						if(decision == 1)
-						{
-							cout << "You look around the room and find a *red* chest...\n"
+						{				
+							if (open == false)
+							{
+								cout << "You look around the room and find a *red* chest...\n"
 								<< "It doesn't seem to be locked.\nWould you like to open the"
 								<< " chest?\n[y] yes\n[n] no\n";
 
-							openTheChest(redKey, yesNo, plyr, itemCount, open);
-							if (open == true)
+								openTheChest(redKey, yesNo, plyr, itemCount, open);
+								if (open == true)
+								{
+									plyr.addItemToInventory(itemCount, plyr);
+									cout << "This item will get you started on your journey and help you escape\n"
+										<< "the Dungeon of Primus. You can now more easily defeat enemies with\n"
+										<< "this heavensent blade.\n\n";
+								}
+							}
+							else
 							{
-								plyr.addItemToInventory(itemCount, plyr);
-								cout << "This item will get you started on your journey and help you escape\n"
-									<< "the Dungeon of Primus. You can now more easily defeat enemies with\n"
-									<< "this heavensent blade.\n";
+								cout << "There is not much else in this room...\n\n";
 							}
 						} // if look around
 						else if(decision == 2)
 						{
-							passitemCount[0]++; // next time you enter room, will display different message...
+							passCount[0]++; // next time you enter room, will display different message...
 							move = true;
 							validDecision = true;
 						} // if move
@@ -142,9 +151,9 @@ void loc1(Player plyr)
 				} // if not been to room before
 				else
 				{
-					passitemCount[0]++;
+					passCount[0]++;
 					cout << "You have visited this room before...\nIn fact this is your "
-						<< passitemCount[0] << " pass into this room...\n";
+						<< passCount[0] << " pass into this room...\n";
 						
 					while(move == false && validDecision == false)
 					{
@@ -162,9 +171,9 @@ void loc1(Player plyr)
 							{
 								cout << "There is an UNOPENED *red* chest.\nWould you like to open the"
 								<< " chest?\n[y] yes\n[n] no\n";
-
 								openTheChest(redKey, yesNo, plyr, itemCount, open);
-								if (open == true)
+
+								if(open == true)
 								{
 									plyr.addItemToInventory(itemCount, plyr);
 									cout << "This item will get you started on your journey and help you escape\n"
@@ -214,10 +223,10 @@ void loc1(Player plyr)
       break; //locRoom1 1
 
       case 2:;
-
-				if(passitemCount[1] == 0)
+				open = false;
+				if(passCount[1] == 0)
 				{
-					passitemCount[1]++; // +1 pass into this room
+					passCount[1]++; // +1 pass into this room
 					while(move == false && validDecision == false)
 					{
 						whatToDo(2);
@@ -226,15 +235,22 @@ void loc1(Player plyr)
 
 						if(decision == 1)
 						{
-							cout << "You look around the room and find a *green* chest...\n"
-									<< "It doesn't seem to be locked.\nWould you like to open the"
-									<< " chest?\n[y] yes\n[n] no\n";
-
-							openTheChest(redKey, yesNo, plyr, itemCount, open);
-							if (open == true)
+							if (open == false)
 							{
-								plyr.addItemToInventory(itemCount, plyr);
-								cout << "This item will partially protect you from enemy strikes!\n";
+								cout << "You look around the room and find a *green* chest...\n"
+										<< "It doesn't seem to be locked.\nWould you like to open the"
+										<< " chest?\n[y] yes\n[n] no\n";
+								openTheChest(redKey, yesNo, plyr, itemCount, open);
+
+								if(open == true)
+								{
+									plyr.addItemToInventory(itemCount, plyr);
+									cout << "This item will partially protect you from enemy strikes!\n";
+								}
+							}
+							else
+							{
+								cout << "There is not much else in this room...\n\n";
 							}
 						}
 						else if(decision == 2)
@@ -288,9 +304,9 @@ void loc1(Player plyr)
 				}
 				else
 				{
-					passitemCount[1]++;
+					passCount[1]++;
 					cout << "You have visited this room before...\nIn fact this is your "
-						<< passitemCount[1] << " pass into this room...\n";
+						<< passCount[1] << " pass into this room...\n";
 
 					while(move == false && validDecision == false)
 					{
@@ -308,9 +324,9 @@ void loc1(Player plyr)
 							{
 								cout << "There is an UNOPENED *green* chest.\nWould you like to open the"
 									<< " chest?\n[y] yes\n[n] no\n";
-
 								openTheChest(redKey, yesNo, plyr, itemCount, open);
-								if (open == true)
+
+								if(open == true)
 								{
 									plyr.addItemToInventory(itemCount, plyr);
 									cout << "This item will partially protect you from enemy strikes!\n";
@@ -368,9 +384,10 @@ void loc1(Player plyr)
       break; //locRoom1 2
 
       case 3:;
-				if(passitemCount[2] == 0)
+				open = false;
+				if(passCount[2] == 0)
 				{
-					passitemCount[2]++; // +1 pass into this room
+					passCount[2]++; // +1 pass into this room
 					while(move == false && validDecision == false)
 					{
 						whatToDo(3);
@@ -379,15 +396,22 @@ void loc1(Player plyr)
 
 						if(decision == 1)
 						{
-							cout << "You look around the room and find a *blue* chest\n"
-									<< "It doesn't seem to be locked.\nWould you like to open the"
-									<< " chest?\n[y] yes\n[n] no\n";
-
-							openTheChest(redKey, yesNo, plyr, itemCount, open);
-							if (open == true)
+							if (open == false)
 							{
-								plyr.addItemToInventory(itemCount, plyr);
-								cout << "This item gives life to its owner.\nIt is meant to be worn on the pinky finger.\n";
+								cout << "You look around the room and find a *blue* chest\n"
+										<< "It doesn't seem to be locked.\nWould you like to open the"
+										<< " chest?\n[y] yes\n[n] no\n";
+								openTheChest(redKey, yesNo, plyr, itemCount, open);
+
+								if(open == true)
+								{
+									plyr.addItemToInventory(itemCount, plyr);
+									cout << "This item gives life to its owner.\nIt is meant to be worn on the pinky finger.\n";
+								}
+							}
+							else
+							{
+								cout << "There is not much else in this room...\n\n";
 							}
 						}
 						else if(decision == 2)
@@ -428,9 +452,9 @@ void loc1(Player plyr)
 				}
 				else
 				{
-					passitemCount[2]++;
+					passCount[2]++;
 					cout << "You have visited this room before...\nIn fact this is your "
-						<< passitemCount[2] << " pass into this room...\n";
+						<< passCount[2] << " pass into this room...\n";
 
 					while(move == false && validDecision == false)
 					{
@@ -446,9 +470,12 @@ void loc1(Player plyr)
 							}
 							else
 							{
-								cout << "There is an UNOPENED *blue* chest.\n";
+								cout << "There is an UNOPENED *blue* chest.\nWould you like to open the"
+									<< " chest?\n[y] yes\n[n] no\n";
+
 								openTheChest(redKey, yesNo, plyr, itemCount, open);
-								if (open == true)
+
+								if(open == true)
 								{
 									plyr.addItemToInventory(itemCount, plyr);
 									cout << "This item gives life to its owner.\nIt is meant to be worn on the pinky finger.\n";
@@ -493,9 +520,10 @@ void loc1(Player plyr)
       break; //locRoom1 3
 
       case 4:;
-				if(passitemCount[3] == 0)
+				open = false;
+				if(passCount[3] == 0)
 				{
-					passitemCount[3]++; // +1 pass into this room
+					passCount[3]++; // +1 pass into this room
 					while(move == false && validDecision == false)
 					{
 						whatToDo(4);
@@ -504,14 +532,23 @@ void loc1(Player plyr)
 
 						if(decision == 1)
 						{
-							cout << "You look around the room and find a *yellow* chest\n"
-								<< "It doesn't seem to be locked.\nWould you like to open the"
-								<< " chest?\n[y] yes\n[n] no\n";
-
-							openTheChest(redKey, yesNo, plyr, itemCount, open);
-							if (open == true)
+							if (open == false)
 							{
-								plyr.addItemToInventory(itemCount, plyr);
+								cout << "You look around the room and find a *yellow* chest\n"
+									<< "It doesn't seem to be locked.\nWould you like to open the"
+									<< " chest?\n[y] yes\n[n] no\n";
+
+								openTheChest(redKey, yesNo, plyr, itemCount, open);
+
+								if(open == true)
+								{
+									plyr.addItemToInventory(itemCount, plyr);
+									cout << "This item also gives life to its owner.\n";
+								}
+							}
+							else
+							{
+								cout << "There is not much else here besides this empty chest...\n\n";
 							}
 						}
 						else if(decision == 2)
@@ -558,10 +595,9 @@ void loc1(Player plyr)
 				}
 				else
 				{
-					passitemCount[3]++;
+					passCount[3]++;
 					cout << "You have visited this room before...\nIn fact this is your "
-						<< passitemCount[3] << " pass into this room...\n"
-						<< "It appears all that is left in here is an opened chest.\n";
+						<< passCount[3] << " pass into this room...\n";
 
 					while(move == false && validDecision == false)
 					{
@@ -571,7 +607,26 @@ void loc1(Player plyr)
 
 						if (decision == 1)
 						{
-							cout << "All that is here is an opened *yellow* chest.\n";
+							if (open == true)
+							{
+								cout << "All that is here is an opened *yellow* chest.\n";
+							}
+							else
+							{
+								cout << "There is an UNOPENED *yellow* chest...\Would you like to open the"
+								<< " chest?\n[y] yes\n[n] no\n"
+									<< "And on second glance, you notice a shiny object laying in the dust!\nDo you want to pick it up?";
+								cin >> pickUp;
+								cout << endl;
+
+								openTheChest(redKey, yesNo, plyr, itemCount, open);
+
+								if(open == true)
+								{
+									plyr.addItemToInventory(itemCount, plyr);
+									cout << "\n";
+								}
+							}
 						}
 						else if (decision == 2)
 						{
@@ -604,9 +659,16 @@ void loc1(Player plyr)
 						}
 						else if(direct == 4)
 						{
-							validDecision = true;
-							direct = 0;
-							locRoom1++;
+							if(plyr.getDoorKeys(1) == true)
+							{
+								validDecision = true;
+								direct = 0;
+								locRoom1++;
+							}
+							else
+							{
+								cout << "This door is locked! You must go find the key!\n\n";
+							}
 						}
 						else
 						{
@@ -617,19 +679,19 @@ void loc1(Player plyr)
 			break; //locRoom1 4
 
 			case 5:;
-				passitemCount[4]++;
-				cout << "Room 5\n";
-				cout << "4: Fight the boss?\n"
-								"3: Back to the Dungeon\n";
+				passCount[4]++;
+				cout << "Boss Room\n";
+				cout << "1: Fight the boss?\n"
+								"2: Back to the Dungeon\n";
 				cin >> direct;
 				cout << endl;
 
-				if(direct == 3)
+				if(direct == 2)
 				{
 					direct = 0;
 					locRoom1 --;
 				}
-				if(direct == 4 && foughtBoss == false)
+				if(direct == 1 && foughtBoss == false)
 				{
 					cout << "You spot a giant rat...\nAnd he's coming right at you!\n";
 					foughtBoss = true;
@@ -637,6 +699,7 @@ void loc1(Player plyr)
 					createPrimusRatticus(boss1); // create first boss
 
 					boss1.displayEntityStats(boss1);
+					plyr.displayPlayerStats(plyr);
 
 					attack(plyr, boss1);
 
@@ -1550,7 +1613,7 @@ void loc4()
 
 void attack(Player plyr, Entity entity)
 {
-	int turn = 0;
+	int turn = 2;
 	char cont = '\0';
 	int healthEnemy = entity.getHealth();
 	int yourHealth = plyr.getHealth();
@@ -1563,7 +1626,7 @@ void attack(Player plyr, Entity entity)
 	}
 	else
 	{
-		cout << "The enemy was quicker! It attacks you first!" << endl;
+		cout << "The enemy is quicker and attacks you first!" << endl;
 		plyr.setHealth(yourHealth -= entity.getAttack() - plyr.getArmor());
 	}
 
@@ -1571,23 +1634,25 @@ void attack(Player plyr, Entity entity)
 	{
 		if (turn % 2 == 0)
 		{
-			cout << "It's your turn to attack!\nPress [n] to proceed to next turn...";
+			cout << "It's your turn to attack!\nPress [n] to proceed to next turn...\n";
 			cin >> cont;
+			cout << endl;
 			while (cont != 'n')
 			{
 				cout << "Invalid command!\n";
 			}
-			plyr.setHealth(yourHealth -= entity.getAttack() - plyr.getArmor());
+			plyr.setHealth(yourHealth -= (entity.getAttack() - plyr.getArmor()));
 		}
 		else
 		{
-			cout << "It's the enemy's turn to attack!\nPress [n] to proceed to next turn...";
+			cout << "It's the enemy's turn to attack!\nPress [n] to proceed to next turn...\n";
 			cin >> cont;
+			cout << endl;
 			while (cont != 'n')
 			{
 				cout << "Invalid command!\n";
 			}
-			entity.setHealth(healthEnemy -= plyr.getAttack() - entity.getArmor());
+			entity.setHealth(healthEnemy -= (plyr.getAttack() - entity.getArmor()));
 		}
 
 		plyr.displayPlayerStats(plyr);
@@ -1772,23 +1837,23 @@ void createLordFarquaad(Entity &lordF)
 void openTheChest(bool key, bool yN, Player plyr, int &itemCount, bool &open)
 {
 	open = false;
-	char oC;
-	cin >> oC;
+	char openChest;
+	cin >> openChest;
 	cout << endl;
-	switch(oC)
+	switch(openChest)
 	{
 		while(yN == false) // input validation
 		{
 			case 'y':
 				if(key == true)
 				{
-					cout << "You have the key for this chest and you unlock it!\n";
 					cout << "You have aquired the " << plyr.getInventoryString(itemCount) << "!\n";
+					itemCount++;
 					open = true;
 				}
 				else
 				{
-					cout << "You do not have the key to open this chest yet!\n";
+					cout << "You need a key that you do not have to open this chest!\n";
 				}
 				yN = true;
 			break;
@@ -1803,5 +1868,5 @@ void openTheChest(bool key, bool yN, Player plyr, int &itemCount, bool &open)
 					<< "[y] yes\n[n] no\n";
 		}
 	}
-	itemCount++;
 }
+
