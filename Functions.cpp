@@ -10,7 +10,6 @@
   Date Created:   10/23/2014
 */
 
-#include "stdafx.h"
 #include "Entity.h"
 #include "Player.h"
 #include "stdafx.h"
