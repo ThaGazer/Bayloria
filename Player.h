@@ -10,6 +10,9 @@ private:
 	static const int INVENTORY_MAX = 25;
 	int gold;
 
+	bool doorKeys[5];
+	string doorKeyName[5];
+
 	bool inventory[INVENTORY_MAX];
 	string inventoryString[INVENTORY_MAX];
 	int inventoryStats[INVENTORY_MAX + 1];
@@ -18,7 +21,7 @@ private:
 
 public:
   Player();
-  Player(int, int, int, int, int, string, int, bool [], string [], int [], string [], int []);
+  Player(int, int, int, int, int, string, int, bool [], string [], int [], string [], int [], bool [], string []);
 	int getGold();
 	void setGold(int);
 	void addGold(Player &, int);
@@ -26,6 +29,11 @@ public:
 	void getInventory(Player &);
 	void setInventory(bool [], string [], int [], string [], int []);
 	void addItemToInventory(int, Player &);
+
+	bool getDoorKeys(int);
+	string getKeyNames(int);
+
+	void addKeyToInventory(int);
 
 	string getInventoryString(int);
 	int sumInventory();
