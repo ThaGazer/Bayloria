@@ -21,19 +21,17 @@ using namespace std;
 
 void instructions()
 {
-  cout <<  "The point of the game is to defeat all four of the main "
-              "bosses\n and progress through the 4 levels of Bayloria\n"
-              "To play the game all you have to do is enter the four numbers\n"
-							"that relate to the door you want to go through:\n"
-              "1 to go north, 2 to go south, 3 to go west, and 4 to go east\n"
-              "Certain door will be locked, you can unlock these doors\n"
-              "but only if you find the door keys\n"
-              "There are treasure chest that are placed throughout the 4 maps\n"
-              "They also have keys that are spread throughout the map\n"
-              "You must collect all 4 items on the floor then kill the Boss\n"
-              "on the floor and receive item of the floor\n"
-              "To finish the game you must kill the final Boss and present\n"
-              "all 20 items collected throughout the game.\n\n";
+  cout << "To play the game all you have to do is enter the four numbers\n"
+          "that relate to the door you want to go through:\n"
+          "1 to go north, 2 to go south, 3 to go west, and 4 to go east\n"
+          "Certain door will be locked, you can unlock these doors\n"
+          "but only if you find the door keys\n"
+          "There are treasure chests that are placed throughout the 4 maps\n"
+          "There are also keys that are spread throughout the map\n"
+          "You must collect all 4 items on the floor then kill the Boss\n"
+          "on the floor and receive item of the floor\n"
+          "To finish the game you must kill the final Boss and present\n"
+          "all 20 items collected throughout the game.\n\n";
 }
 
 void description()
@@ -47,6 +45,12 @@ void description()
           " you move, because they may help when you get lost\n\n";
 }
 
+void credits()
+{
+  cout << "Cole Crawford and Justin Ritter did a lot of typing"
+          "and Nannan wants a haricut\n\n";
+}
+
 void whatToDo(int a)
 {
 	cout << "\nRoom " << a << endl;
@@ -55,11 +59,13 @@ void whatToDo(int a)
           "[2] move on to the next room\n";
 }
 
-void searchRoom(string chestColor, bool key, bool &chest, bool &isOpen, Player &plyr, int whchItem)
+void searchRoom(string chestColor, bool key, bool &chest, bool &isOpen,
+                Player &plyr, int whchItem)
 {
 	if(chest == true)
 	{
-		cout << "You search the room and find a " << chestColor << " chest!" << endl;
+		cout << "You search the room and find a " << chestColor << " chest!"
+         << endl;
 		cout << "Would you like to open the chest?\n[y] yes\n[n] no\n";
 		openTheChest(key, plyr, isOpen, whchItem);
 
@@ -73,7 +79,7 @@ void searchRoom(string chestColor, bool key, bool &chest, bool &isOpen, Player &
 	{
 		cout << "You look around and don't find much..." << endl;
 	}
-	
+
 }
 
 void moveNextRoom(int &direct, bool dire[], bool &valDec)
@@ -144,7 +150,7 @@ void loc1(Player &plyr)
 		passCount[i] = 0;
 	}
 
-  cout << "\n\nThe Dungeon of Primus" << endl;
+  cout << "\nMap loc 1" << endl;
   while(locRoom1 < 6)
   {
 		bool move = false;
@@ -593,7 +599,7 @@ void loc2(Player &plyr)
 		passCount[i] = 0;
 	}
 
-  cout << "\n\nThe Lowlands of Secundus";
+  cout << "\nMap loc 2";
   while(locRoom2 < 9)
   {
 		bool move = false;
@@ -1349,7 +1355,7 @@ void loc3(Player &plyr)
 		passCount[i] = 0;
 	}
 
-  cout << "\n\nThe Sacred Forest of Tertius\n";
+  cout << "\n\nMap loc 3\n";
   while(locRoom3 < 12)
   {
 		bool move = false;
@@ -2360,7 +2366,7 @@ void loc4(Player &plyr)
 		passCount[i] = 0;
 	}
 
-  cout << "\n\nThe Mountain Fortress of Quartus\n";
+  cout << "Map loc 4\n";
   while(locRoom4 < 15)
   {
 		bool move = false;
@@ -3612,10 +3618,10 @@ void attack(Player plyr, Entity entity)
 		turn++;
 		cout << "You attack first!" << endl;
 		entity.setHealth(healthEnemy -= (plyr.getAttack() - entity.getArmor()));
-		cout << "Press [n] to proceed to next turn...\n";
+		cout << "Press [e] to proceed to next turn...\n";
 			cin >> cont;
 			cout << endl;
-			while (cont != 'n')
+			while (cont != 'e')
 			{
 				cout << "Invalid command!\n";
 			}
@@ -3624,10 +3630,10 @@ void attack(Player plyr, Entity entity)
 	{
 		cout << "The enemy is quicker and attacks you first!" << endl;
 		plyr.setHealth(yourHealth -= (entity.getAttack() - plyr.getArmor()));
-		cout << "Press [n] to proceed to next turn...\n";
+		cout << "Press [e] to proceed to next turn...\n";
 			cin >> cont;
 			cout << endl;
-			while (cont != 'n')
+			while (cont != 'e')
 			{
 				cout << "Invalid command!\n";
 			}
@@ -3640,10 +3646,11 @@ void attack(Player plyr, Entity entity)
 	{
 		if (turn % 2 == 0)
 		{
-			cout << "It's your turn to attack!\nPress [n] to proceed to next turn...\n";
+			cout << "It's your turn to attack!\nPress [e] to proceed to"
+              "next turn...\n";
 			cin >> cont;
 			cout << endl;
-			while (cont != 'n')
+			while (cont != 'e')
 			{
 				cout << "Invalid command!\n";
 			}
@@ -3651,10 +3658,11 @@ void attack(Player plyr, Entity entity)
 		}
 		else
 		{
-			cout << "It's the enemy's turn to attack!\nPress [n] to proceed to next turn...\n";
+			cout << "It's the enemy's turn to attack!\nPress [e] to proceed to"
+              "next turn...\n";
 			cin >> cont;
 			cout << endl;
-			while (cont != 'n')
+			while (cont != 'e')
 			{
 				cout << "Invalid command!\n";
 			}
@@ -3673,7 +3681,8 @@ void store(Player &plyr)
 	int choice = 0;
 	int buy = 0;
 	bool exit = false;
-	cout << "Welcome to the Secret Store!\nWould you like to buy something?" << endl;
+	cout << "Welcome to the Secret Store!\nWould you like to buy something?"
+       << endl;
 	cout << "[1] No\n[2] Not sure yet, what do you have to offer?" << endl;
 	cin >> choice;
 
@@ -3685,12 +3694,12 @@ void store(Player &plyr)
 	case 2:
 		while(exit = false)
 		{
-			cout << "Here are the items available:\n\n[1] Oblivion Staff\n+50 Attack\n"
-				<< "100g\n\n[2] Boots of Speed\n+5 Speed\n40g\n\n[3] Dragon Scale Cape\n"
-				<< "+50 Armor\n100g\n\n[4] Belt of Youth\n+100 HP\n60g\n\n"
-				<< "[5] Blood Dagger\n+25 Attack\n40g\n\nSelect one of these items or"
-				<< " press [6] to exit the shop.\n\n (You have" << plyr.getGold() << "g)"
-				<< endl;
+			cout << "Here are the items available:\n\n[1] Oblivion Staff\n+50 "
+              "Attack\n100g\n\n[2] Boots of Speed\n+5 Speed\n40g\n\n[3]"
+              " Dragon Scale Cape\n+50 Armor\n100g\n\n[4] Belt of Youth\n"
+              "+100 HP\n60g\n\n[5] Blood Dagger\n+25 Attack\n40g\n\n"
+              "Select one of these items or press [6] to exit the shop.\n\n"
+              " (You have" << plyr.getGold() << "g)" << endl;
 			cin >> buy;
 
 			switch(buy)
@@ -3852,7 +3861,7 @@ void openTheChest(bool key, Player plyr, bool &open, int item)
 {
 	char openChest;
 	open = false;
-	
+
 	do
 	{
 		cin >> openChest;
@@ -3862,12 +3871,14 @@ void openTheChest(bool key, Player plyr, bool &open, int item)
 				case 'y':
 					if(key == true)
 					{
-						cout << "You have aquired the " << plyr.getInventoryString(item - 1) << "!\n";
+						cout << "You have aquired the "
+                 << plyr.getInventoryString(item - 1) << "!\n";
 						open = true;
 					}
 					else
 					{
-						cout << "You need a key that you do not have to open this chest...\n";
+						cout << "You need a key that you do not have to"
+                    "open this chest...\n";
 						cout << "Go find the key!" << endl;
 					}
 				break;
@@ -3882,4 +3893,3 @@ void openTheChest(bool key, Player plyr, bool &open, int item)
 		}
 	}while(openChest != 'y' && openChest != 'n');
 }
-
