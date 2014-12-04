@@ -18,6 +18,9 @@
 
 void instructions();
 void whatToDo(int);
+void searchRoom(string, bool, bool &, int &, bool &, Player &, int);
+void move(int &, bool [], bool &);
+void invalidCommand();
 void loc1(Player);
 void loc2(Player);
 void loc3(Player);
@@ -35,6 +38,6 @@ void createSecondusSerpent(Entity &);
 void createStagOfTertius(Entity &);
 void createLordFarquaad(Entity &);
 
-void openTheChest(bool, bool, Player, int &, bool &);
+void openTheChest(bool, Player, int &, bool &, int);
 
 #endif
