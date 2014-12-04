@@ -17,6 +17,8 @@
 #include "Player.h"
 
 void instructions();
+void description();
+void credits();
 void whatToDo(int);
 void searchRoom(string, bool, bool &, bool &, Player &, int);
 void move(int &, bool [], bool &);
