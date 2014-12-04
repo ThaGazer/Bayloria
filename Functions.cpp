@@ -44,17 +44,17 @@ void whatToDo(int a)
           "[2] move on to the next room\n";
 }
 
-void searchRoom(string chestColor, bool key, bool &chest, int &itemCt, bool &isOpen, Player &plyr, int whchItem)
+void searchRoom(string chestColor, bool key, bool &chest, bool &isOpen, Player &plyr, int whchItem)
 {
 	if(chest == true)
 	{
 		cout << "You search the room and find a " << chestColor << " chest!" << endl;
 		cout << "Would you like to open the chest?\n[y] yes\n[n] no\n";
-		openTheChest(key, plyr, itemCt, isOpen, whchItem);
+		openTheChest(key, plyr, isOpen, whchItem);
 
 		if (isOpen == true)
 		{
-			plyr.addItemToInventory(itemCt, plyr);
+			plyr.addItemToInventory(whchItem, plyr);
 			chest = false;
 		}
 	}
@@ -155,7 +155,7 @@ void loc1(Player plyr)
 
 						if(decision == 1)
 						{				
-							searchRoom("red", redKey, redChestIsHere, itemCount, open, plyr, 1);
+							searchRoom("red", redKey, redChestIsHere, open, plyr, 1);
 						} // if look around
 						else if(decision == 2)
 						{
@@ -195,7 +195,7 @@ void loc1(Player plyr)
 
 						if (decision == 1)
 						{
-							searchRoom("red", redKey, redChestIsHere, itemCount, open, plyr, 1);
+							searchRoom("red", redKey, redChestIsHere, open, plyr, 1);
 						}
 						else if (decision == 2)
 						{
@@ -235,7 +235,7 @@ void loc1(Player plyr)
 
 						if(decision == 1)
 						{
-							searchRoom("green", greenKey, greenChestIsHere, itemCount, open, plyr, 2);
+							searchRoom("green", greenKey, greenChestIsHere, open, plyr, 2);
 						}
 						else if(decision == 2)
 						{
@@ -282,7 +282,7 @@ void loc1(Player plyr)
 
 						if (decision == 1)
 						{
-							searchRoom("green", greenKey, greenChestIsHere, itemCount, open, plyr, 2);
+							searchRoom("green", greenKey, greenChestIsHere, open, plyr, 2);
 						}
 						else if (decision == 2)
 						{
@@ -330,7 +330,7 @@ void loc1(Player plyr)
 
 						if(decision == 1)
 						{
-							searchRoom("blue", blueKey, blueChestIsHere, itemCount, open, plyr, 3);
+							searchRoom("blue", blueKey, blueChestIsHere, open, plyr, 3);
 						}
 						else if(decision == 2)
 						{
@@ -369,7 +369,7 @@ void loc1(Player plyr)
 
 						if (decision == 1)
 						{
-							searchRoom("blue", blueKey, blueChestIsHere, itemCount, open, plyr, 3);
+							searchRoom("blue", blueKey, blueChestIsHere, open, plyr, 3);
 						}
 						else if (decision == 2)
 						{
@@ -409,7 +409,7 @@ void loc1(Player plyr)
 
 						if(decision == 1)
 						{
-							searchRoom("yellow", yellowKey, yellowChestIsHere, itemCount, open, plyr, 4);
+							searchRoom("yellow", yellowKey, yellowChestIsHere, open, plyr, 4);
 						}
 						else if(decision == 2)
 						{
@@ -456,7 +456,7 @@ void loc1(Player plyr)
 
 						if (decision == 1)
 						{
-							searchRoom("yellow", yellowKey, yellowChestIsHere, itemCount, open, plyr, 4);
+							searchRoom("yellow", yellowKey, yellowChestIsHere, open, plyr, 4);
 						}
 						else if (decision == 2)
 						{
@@ -532,7 +532,7 @@ void loc1(Player plyr)
   } //while locRoom1
 }
 
-void loc2()
+void loc2(Player plyr)
 {
   int locRoom2 = 1;
   int decision = 0;
@@ -753,305 +753,944 @@ void loc2()
   } //while locRoom2
 }
 
-void loc3()
+void loc3(Player plyr)
 {
-  int locRoom3 = 1;
+	bool redKey = true; // all keys true because no locks first floor
+	bool greenKey = true; // all keys true because no locks first floor
+	bool blueKey = true; // all keys true because no locks first floor
+	bool yellowKey = true; // all keys true because no locks first floor
+
+	bool redChestIsHere = false;
+	bool greenChestIsHere = false;
+	bool blueChestIsHere = false;
+	bool yellowChestIsHere = false;
+
+	int itemCountMasterkey = 4;
+	bool redOpen = false;
+	bool greenOpen = false;
+	bool blueOpen = false;
+	bool yellowOpen = false;
+
+	bool direction[4];
+
+	int itemCount = 0;
+	bool open = false;
+	bool foughtBoss = false;
+	char pickUp = '\0';
+
+	int locRoom3 = 1;
   int decision = 0;
   int direct = 0;
+  int passCount[11];
 
+	for(int i = 0; i < 11; i++)
+	{
+		passCount[i] = 0;
+	}
+  
   cout << "Map loc 3\n";
   while(locRoom3 < 12)
   {
+		bool move = false;
+		bool validDecision = false;
+		bool yesNo = false;
+
+		redChestIsHere = false;
+		greenChestIsHere = false;
+		blueChestIsHere = false;
+		yellowChestIsHere = false;
+
     switch(locRoom3)
     {
       case 1:;
-        whatToDo(1);
-        cin >> decision;
-        if(decision == 1)
-        {
-          cout << "You look around the room and find a chest key (1)\n";
-        }
-        cout << "Which direction would you like to move?\n";
-        cin >> direct;
-        while(direct != 4)
-        {
-          cout << "That door is closed\n";
-          cin >> direct;
-        }
-        if(direct == 4)
-        {
-          direct = 0;
-          locRoom3++;
-        }
+				if(passCount[0] == 0)
+				{
+					passCount[0]++;
+					while(move == false && validDecision == false)
+					{
+						whatToDo(1);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("yellow", yellowKey, yellowChestIsHere, open, plyr, 11);
+						}
+						else if(decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							invalidCommand();
+							validDecision = false;
+						}
+					}
+
+					direction[0] = false;
+					direction[1] = false;
+					direction[2] = false;
+					direction[3] = true;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 4)
+					{
+						locRoom3++;
+					}
+				}
+				else
+				{
+					passCount[0]++;
+					cout << "You have visited this room before...\n";
+
+					while(move == false && validDecision == false)
+					{
+						whatToDo(1);
+						cin >> decision;
+						cout << endl;
+
+						if (decision == 1)
+						{
+							searchRoom("yellow", yellowKey, yellowChestIsHere, open, plyr, 11);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					} // while not move and not good input
+
+					direction[0] = false;
+					direction[1] = false;
+					direction[2] = false;
+					direction[3] = true;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 4)
+					{
+						locRoom3++;
+					}
+				}
       break; //locRoom3 1
 
       case 2:;
-        whatToDo(2);
-        cin >> decision;
-        if(decision == 1)
-        {
-          cout << "You look around the room and find a door key (1)\n";
-        }
-        cout << "Which direction would you like to move?\n";
-        cin >> direct;
-        while(direct == 1)
-        {
-          cout << "That door is closed\n";
-          cin >> direct;
-        }
-        if(direct == 2)
-        {
-          direct = 0;
-          locRoom3 += 3;
-        }
-        if(direct == 3)
-        {
-          direct = 0;
-          locRoom3--;
-        }
-        if(direct == 4)
-        {
-          direct = 0;
-          locRoom3 ++;
-        }
+				if(passCount[1] == 0)
+				{
+					passCount[1]++;
+					while(move == false && validDecision == false)
+					{
+						whatToDo(2);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("yellow", yellowKey, yellowChestIsHere, open, plyr, 12);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = false;
+					direction[1] = true;
+					direction[2] = true;
+					direction[3] = true;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 2)
+					{
+						locRoom3 += 3;
+					}
+					if(direct == 3)
+					{
+						locRoom3--;
+					}
+					if(direct == 4)
+					{
+						locRoom3 ++;
+					}
+				}
+				else
+				{
+					passCount[1]++;
+					cout << "You have visited this room before...\n";
+
+					while(move == false && validDecision == false)
+					{
+						whatToDo(2);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("yellow", yellowKey, yellowChestIsHere, open, plyr, 12);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = false;
+					direction[1] = true;
+					direction[2] = true;
+					direction[3] = true;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 2)
+					{
+						locRoom3 += 3;
+					}
+					if(direct == 3)
+					{
+						locRoom3--;
+					}
+					if(direct == 4)
+					{
+						locRoom3 ++;
+					}
+				}
       break; //locRoom3 2
 
       case 3:;
-        whatToDo(3);
-        cin >> decision;
-        if(decision == 1)
-        {
-          cout << "You look around the room and find a chest key (2)"
-                  "\nand a chest (3)\n";
-        }
-        cout << "Which direction would you like to move?\n";
-        cin >> direct;
-        while(direct == 1 || direct == 4)
-        {
-          cout << "That door is closed\n";
-          cin >> decision;
-        }
-        if(direct == 2)
-        {
-          direct = 0;
-          locRoom3 += 3;
-        }
-        if(direct == 3)
-        {
-          direct = 0;
-          locRoom3--;
-        }
+				blueChestIsHere = true;
+				if(passCount[2] == 0)
+				{
+					passCount[2]++;
+					while(move == false && validDecision == false)
+					{
+						whatToDo(3);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("blue", blueKey, blueChestIsHere, open, plyr, 13);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = false;
+					direction[1] = true;
+					direction[2] = true;
+					direction[3] = false;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 2)
+					{
+						locRoom3 += 3;
+					}
+					if(direct == 3)
+					{
+						locRoom3--;
+					}
+				}
+				else
+				{
+					cout << "You have visited this room before...\n";
+					passCount[2]++;
+
+					while(move == false && validDecision == false)
+					{
+						whatToDo(3);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("blue", blueKey, blueChestIsHere, open, plyr, 13);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = false;
+					direction[1] = true;
+					direction[2] = true;
+					direction[3] = false;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 2)
+					{
+						locRoom3 += 3;
+					}
+					if(direct == 3)
+					{
+						locRoom3--;
+					}
+				}
       break; //locRoom3 3
 
       case 4:;
-        whatToDo(4);
-        cin >> decision;
-        if(decision == 1)
-        {
-          cout << "You look around the room and find a chest key (3)\n";
-        }
-        cout << "Which direction would you like to move?\n";
-        cin >> direct;
-        while(direct == 1 || direct == 3)
-        {
-          cout << "That door is closed\n";
-          cin >> decision;
-        }
-        if(direct == 2)
-        {
-          direct = 0;
-          locRoom3 += 3;
-        }
-        if(direct == 4)
-        {
-          direct = 0;
-          locRoom3++;
-        }
-        locRoom3++;
+				if(passCount[3] == 0)
+				{
+					passCount[3]++;
+					while(move == false && validDecision == false)
+					{
+						whatToDo(4);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("blue", blueKey, blueChestIsHere, open, plyr, 14);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+					
+						direction[0] = false;
+						direction[1] = true;
+						direction[2] = false;
+						direction[3] = true;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 2)
+					{
+						locRoom3 += 3;
+					}
+					if(direct == 4)
+					{
+						locRoom3++;
+					}
+				}
+				else
+				{
+					cout << "You have visited this room before...\n";
+					passCount[3]++;
+
+					while(move == false && validDecision == false)
+					{
+						whatToDo(4);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("blue", blueKey, blueChestIsHere, open, plyr, 14);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+					
+					direction[0] = false;
+					direction[1] = true;
+					direction[2] = false;
+					direction[3] = true;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 2)
+					{
+						locRoom3 += 3;
+					}
+					if(direct == 4)
+					{
+						locRoom3++;
+					}
+				}
       break; //locRoom3 4
 
       case 5:;
-        whatToDo(5);
-        cin >> decision;
-        if(decision == 1)
-        {
-          cout << "You look around the room and find a door key (2)"
-                  "\na chest key (4) and a chest (2)\n";
-        }
-        cout << "Which direction would you like to move?\n";
-        cin >> direct;
-        if(direct == 1)
-        {
-          direct = 0;
-          locRoom3 -= 3;
-        }
-        if(direct == 2)
-        {
-          direct = 0;
-          locRoom3 += 3;
-        }
-        if(direct == 3)
-        {
-          direct = 0;
-          locRoom3--;
-        }
-        if(direct == 4)
-        {
-          locRoom3++;
-        }
+				greenChestIsHere = true;
+				if(passCount[4] == 0)
+				{
+					passCount[4]++;
+					while(move == false && validDecision == false)
+					{
+						whatToDo(5);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("green", greenKey, greenChestIsHere, open, plyr, 12);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = true;
+					direction[1] = true;
+					direction[2] = true;
+					direction[3] = true;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 1)
+					{
+						locRoom3 -= 3;
+					}
+					if(direct == 2)
+					{
+						locRoom3 += 3;
+					}
+					if(direct == 3)
+					{
+						locRoom3--;
+					}
+					if(direct == 4)
+					{
+						locRoom3++;
+					}
+				}
+				else
+				{
+					cout << "You have visited this room before...\n";
+					passCount[4]++;
+
+					while(move == false && validDecision == false)
+					{
+						whatToDo(5);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("green", greenKey, greenChestIsHere, open, plyr, 12);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = true;
+					direction[1] = true;
+					direction[2] = true;
+					direction[3] = true;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 1)
+					{
+						locRoom3 -= 3;
+					}
+					if(direct == 2)
+					{
+						locRoom3 += 3;
+					}
+					if(direct == 3)
+					{
+						locRoom3--;
+					}
+					if(direct == 4)
+					{
+						locRoom3++;
+					}
+				}
       break; //locRoom3 5
 
       case 6:;
-        whatToDo(6);
-        cin >> decision;
-        if(decision == 1)
-        {
-          cout << "You look around the room and find nothing\n";
-        }
-        cout << "Which direction would you like to move?\n";
-        cin >> direct;
-        while(direct == 2 || direct == 4)
-        {
-          cout << "That door is closed\n";
-          cin >> decision;
-        }
-        if(direct == 1)
-        {
-          direct = 0;
-          locRoom3 -= 3;
-        }
-        if(direct == 3)
-        {
-          direct = 0;
-          locRoom3--;
-        }
+				if(passCount[5] == 0)
+				{
+					passCount[5]++;
+					while(move == false && validDecision == false)
+					{
+						whatToDo(6);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("green", greenKey, greenChestIsHere, open, plyr, 15);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = true;
+					direction[1] = false;
+					direction[2] = true;
+					direction[3] = false;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 1)
+					{
+						locRoom3 -= 3;
+					}
+					if(direct == 3)
+					{
+						locRoom3--;
+					}
+				}
+				else
+				{
+					cout << "You have visited this room before...\n";
+					passCount[5]++;
+
+					while(move == false && validDecision == false)
+					{
+						whatToDo(6);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("green", greenKey, greenChestIsHere, open, plyr, 15);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = true;
+					direction[1] = false;
+					direction[2] = true;
+					direction[3] = false;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 1)
+					{
+						locRoom3 -= 3;
+					}
+					if(direct == 3)
+					{
+						locRoom3--;
+					}
+				}
       break; //locRoom3 6
 
       case 7:;
-        whatToDo(7);
-        cin >> decision;
-        if(decision == 1)
-        {
-          cout << "You look around the room and find chest key (3)\n";
-        }
-        cout << "Which direction would you like to move?\n";
-        cin >> direct;
-        while(direct == 2 || direct == 3)
-        {
-          cout << "That door is closed\n";
-          cin >> decision;
-        }
-        if(direct == 1)
-        {
-          direct = 0;
-          locRoom3 -= 3;
-        }
-        if(direct == 4)
-        {
-          direct = 0;
-          locRoom3++;
-        }
+				if(passCount[6] == 0)
+				{
+					passCount[6]++;
+					while(move == false && validDecision == false)
+					{
+						whatToDo(7);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("green", greenKey, greenChestIsHere, open, plyr, 15);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = true;
+					direction[1] = false;
+					direction[2] = false;
+					direction[3] = true;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 1)
+					{
+						locRoom3 -= 3;
+					}
+					if(direct == 4)
+					{
+						locRoom3++;
+					}
+				}
+				else
+				{
+					cout << "You have visited this room before...\n";
+					passCount[6]++;
+
+					while(move == false && validDecision == false)
+					{
+						whatToDo(7);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("green", greenKey, greenChestIsHere, open, plyr, 15);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = true;
+					direction[1] = false;
+					direction[2] = false;
+					direction[3] = true;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 1)
+					{
+						locRoom3 -= 3;
+					}
+					if(direct == 4)
+					{
+						locRoom3++;
+					}
+				}
       break; //locRoom3 7
 
       case 8:;
-        whatToDo(8);
-        cin >> decision;
-        if(decision == 1)
-        {
-          cout << "You look around the room and find a chest (1)\n";
-        }
-        cout << "Which direction would you like to move?\n";
-        cin >> direct;
-        if(direct == 1)
-        {
-          direct = 0;
-          locRoom3 -= 3;
-        }
-        if(direct == 2)
-        {
-          direct = 0;
-          locRoom3 += 2;
-        }
-        if(direct == 3)
-        {
-          direct = 0;
-          locRoom3--;
-        }
-        if(direct == 4)
-        {
-          direct = 0;
-          locRoom3++;
-        }
+				redChestIsHere = true;
+				if(passCount[7] == 0)
+				{
+					passCount[7]++;
+					while(move == false && validDecision == false)
+					{
+						whatToDo(8);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("red", redKey, redChestIsHere, open, plyr, 11);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = true;
+					direction[1] = true;
+					direction[2] = true;
+					direction[3] = true;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 1)
+					{
+						locRoom3 -= 3;
+					}
+					if(direct == 2)
+					{
+						locRoom3 += 2;
+					}
+					if(direct == 3)
+					{
+						locRoom3--;
+					}
+					if(direct == 4)
+					{
+						locRoom3++;
+					}
+				}
+				else
+				{
+					cout << "You have visited this room before...\n";
+					passCount[7]++;
+
+					while(move == false && validDecision == false)
+					{
+						whatToDo(8);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("red", redKey, redChestIsHere, open, plyr, 11);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = true;
+					direction[1] = true;
+					direction[2] = true;
+					direction[3] = true;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 1)
+					{
+						locRoom3 -= 3;
+					}
+					if(direct == 2)
+					{
+						locRoom3 += 2;
+					}
+					if(direct == 3)
+					{
+						locRoom3--;
+					}
+					if(direct == 4)
+					{
+						locRoom3++;
+					}
+				}
       break; //locRoom3 8
 
       case 9:;
-        whatToDo(9);
-        cin >> decision;
-        if(decision == 1)
-        {
-          cout << "You look around the room and find a door key (4)\n"
-                  "and a chest (4)\n";
-        }
-        cout << "Which direction would you like to move?\n";
-        cin >> direct;
-        while(direct != 3)
-        {
-          cout << "That door is closed\n";
-          cin >> direct;
-        }
-        if(direct == 3)
-        {
-          direct = 0;
-          locRoom3--;
-        }
+				yellowChestIsHere = true;
+				if(passCount[8] == 0)
+				{
+					passCount[8]++;
+					while(move == false && validDecision == false)
+					{
+						whatToDo(9);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("yellow", yellowKey, yellowChestIsHere, open, plyr, 14);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = false;
+					direction[1] = false;
+					direction[2] = true;
+					direction[3] = false;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 3)
+					{
+						locRoom3--;
+					}
+				}
+				else
+				{
+					cout << "You have visited this room before...\n";
+					passCount[8]++;
+
+					while(move == false && validDecision == false)
+					{
+						whatToDo(9);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("yellow", yellowKey, yellowChestIsHere, open, plyr, 14);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = false;
+					direction[1] = false;
+					direction[2] = true;
+					direction[3] = false;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 3)
+					{
+						locRoom3--;
+					}
+				}
       break; //locRoom3 9
 
       case 10:;
-        whatToDo(10);
-        cin >> decision;
-        if(decision == 1)
-        {
-          cout << "You look around the room and find nothing\n";
-        }
-        cout << "Which direction would you like to move?\n";
-        cin >> direct;
-        while(direct == 2 || direct == 3)
-        {
-          cout << "That door is closed";
-          cin >> direct;
-        }
-        if(direct == 1)
-        {
-          direct = 0;
-          locRoom3 -= 2;
-        }
-        if(direct == 4)
-        {
-          locRoom3++;
-        }
+				if(passCount[9] == 0)
+				{
+					passCount[9]++;
+					while(move == false && validDecision == false)
+					{
+						whatToDo(10);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("yellow", yellowKey, yellowChestIsHere, open, plyr, 14);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = true;
+					direction[1] = false;
+					direction[2] = false;
+					direction[3] = true;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 1)
+					{
+						locRoom3 -= 2;
+					}
+					if(direct == 4)
+					{
+						locRoom3++;
+					}
+				}
+				else
+				{
+					cout << "You have visited this room before...\n";
+					passCount[9]++;
+
+					while(move == false && validDecision == false)
+					{
+						whatToDo(10);
+						cin >> decision;
+						if(decision == 1)
+						{
+							searchRoom("yellow", yellowKey, yellowChestIsHere, open, plyr, 14);
+						}
+						else if (decision == 2)
+						{
+							move = true;
+							validDecision = true;
+						}
+						else
+						{
+							validDecision = false;
+						}
+					}
+
+					direction[0] = true;
+					direction[1] = false;
+					direction[2] = false;
+					direction[3] = true;
+
+					moveNextRoom(direct, direction, validDecision);
+
+					if(direct == 1)
+					{
+						locRoom3 -= 2;
+					}
+					if(direct == 4)
+					{
+						locRoom3++;
+					}
+				}
       break; //locRoom3 10
 
       case 11:;
-        cout << "\nYou are in room 11";
-        cout << "4: Fight the boss?\n"
-                "3: Back to the Dungeon\n";
-        cin >> direct;
-        if(direct == 3)
-        {
-          direct = 0;
-          locRoom3--;
-        }
-        if(direct == 4)
-        {
-          direct = 0;
-          locRoom3++;
-        }
+				do
+					{
+					cout << "\nYou are in room 11";
+					cout << "\n1: Fight the boss?\n"
+									"2: Back to the Dungeon\n";
+					cin >> direct;
+
+					if(direct == 1 && foughtBoss == false)
+					{
+						cout << "A massive serpent is weaving slowly toward you...\n";
+						foughtBoss = true;
+						Entity boss2;
+						createSecondusSerpent(boss2); // create first boss
+
+						boss2.displayEntityStats(boss2);
+						plyr.displayPlayerStats(plyr);
+
+						attack(plyr, boss2);
+
+						if(boss2.getHealth() < 1)
+						{
+							cout << "You have defeated Secondus Serpent!\n";
+							plyr.addGold(plyr, 20);
+							plyr.addItemToInventory(itemCountMasterkey, plyr);
+							plyr.getInventory(plyr);
+							locRoom3++;
+						}
+
+						direct = 0;
+						locRoom3 = 11;
+					}
+					else if(direct == 2)
+					{
+						direct = 0;
+						locRoom3--;
+					}
+					else
+					{
+						invalidCommand();
+					}
+				}while(direct != 1 && direct != 2);
       break; //locRoom3 11
     } //swtich locRoom3
   } //while locRoom3
 }
 
-void loc4()
+void loc4(Player plyr)
 {
   int locRoom4 = 1;
   int decision = 0;
@@ -1671,7 +2310,7 @@ void createLordFarquaad(Entity &lordF)
 	lordF.setSpeed(10);
 }
 
-void openTheChest(bool key, Player plyr, int &itemCount, bool &open, int item)
+void openTheChest(bool key, Player plyr, bool &open, int item)
 {
 	char openChest;
 	open = false;
@@ -1686,7 +2325,6 @@ void openTheChest(bool key, Player plyr, int &itemCount, bool &open, int item)
 					if(key == true)
 					{
 						cout << "You have aquired the " << plyr.getInventoryString(item - 1) << "!\n";
-						itemCount++;
 						open = true;
 					}
 					else
