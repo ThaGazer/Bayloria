@@ -9,90 +9,6 @@
                   Once you defeat him you win the game.
   Date Created:   10/23/2014
 */
-/*
-#include <iostream>
-#include <cstdlib>
-
-#include "Functions.h"
-
-using namespace std;
-
-int main()
-{
-  int locMain = 1;
-  int locRoom1 = 1;
-  int locRoom2 = 1;
-  int locRoom3 = 1;
-  int locRoom4 = 1;
-  int keys = 0;
-  int direct = 0;
-  int startChoice = 0;
-  string playNam = "";
-  bool gameReady = false;
-
-
-  while(gameReady == false)
-  {
-    cout << "To start hit 1\n";
-    cout << "For instruction hit 2\n";
-    cout << "To exit game hit 3\n";
-    cin >> startChoice;
-
-    if(startChoice == 1)
-    {
-      cout << "plz enter da name: ";
-      cin >> playNam;
-      Player p1(10, 10, 5, 1.0, playNam);
-      gameReady = true;
-    }
-    else if(startChoice == 2)
-    {
-      instructions();
-      startChoice = 0;
-    }
-    else if(startChoice == 3)
-    {
-      exit(1);
-    }
-    else
-    {
-      startChoice == 0;
-    }
-  }
-
-  while(keys < 4)
-  {
-    switch(locMain)
-    {
-      case 1:;
-        loc1();
-        keys++;
-        locMain++;
-      break; //locMain 1
-
-      case 2:;
-        loc2();
-        keys++;
-        locMain++;
-      break; //case 2
-
-      case 3:;
-        loc3();
-        keys++;
-        locMain++;
-      break; //case 3
-
-      case 4:;
-        loc4();
-        keys++;
-        locMain++;
-      break; //case 4
-    }
-  }
-
-  return 0;
-}
-*/
 
 #include "Functions.h"
 #include "Entity.h"
@@ -104,18 +20,69 @@ using namespace std;
 
 int main()
 {
-	Player player1;
-	player1.setName("Cole Crawford");
-	player1.setAttack(10);
-	player1.setTotalHealth(50);
-	player1.setHealth(50);
-	player1.setArmor(0);
-	player1.setSpeed(1);
-	player1.setGold(0);
+  int starter;
+  bool game = true;
 
-	instructions();
-	loc1(player1);
+  while(game == true)
+  {
+    cout << "[1] Start game\n";
+    cout << "[2] instructions\n";
+    cout << "[3] Description\n";
+    cout << "[4] Credits\n";
+    cout << "[5] Exit\n";
+    cin >> starter;
+    if(starter == 1)
+    {
+      for(int i = 0; i < 50; i++)
+      {
+        cout << "\n\n";
+      }
+      Player player1;
+      player1.setName("Cole Crawford");
+      player1.setAttack(10);
+      player1.setTotalHealth(50);
+      player1.setHealth(50);
+      player1.setArmor(0);
+      player1.setSpeed(1);
+      player1.setGold(0);
+      loc1(player1);
+      loc3(player1);
 
-	system("PAUSE");
+
+      for(int i = 0; i < 50; i++)
+      {
+        cout << "\n\n";
+      }
+    }
+    if(starter == 2)
+    {
+      for(int i = 0; i < 50; i++)
+      {
+        cout << "\n\n";
+      }
+      instructions();
+    }
+    if(starter == 3)
+    {
+      for(int i = 0; i < 50; i++)
+      {
+        cout << "\n\n";
+      }
+      description();
+    }
+    if(starter == 4)
+    {
+      for(int i = 0; i < 50; i++)
+      {
+        cout << "\n\n";
+      }
+      credits();
+    }
+    if(starter == 5)
+    {
+      game = false;
+    }
+	}
+
 	return 0;
 }
