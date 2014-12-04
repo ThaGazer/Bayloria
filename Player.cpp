@@ -51,7 +51,7 @@ Player::Player()
 	inventoryString[7] = "Amulet of Saphire";
 	inventoryStats[8] = 10; // health
 	inventoryType[8] = "health";
-	inventoryString[8] = "Right Index Ring";
+	inventoryString[8] = "Right Index Ring"; 
 	inventoryStats[9] = 5; // health
 	inventoryType[9] = "health";
 	inventoryString[9] = "Steed of Death";
@@ -159,19 +159,19 @@ void Player::getInventory(Player &plyr)
 			if (inventoryString[i] == "Bow and Arrows")
 			{
 				cout << inventoryNum[i] << ". " << inventoryString[i]
-						<< "\t+" << inventoryStats[i] << " " << inventoryType[i]
+						<< "\t+" << inventoryStats[i] << " " << inventoryType[i] 
 						<< " +" << inventoryStats[i + 1] << " " << inventoryType[i + 1]
 						<< endl;
 			}
 			else if(inventoryNum[i] < 6)
 			{
 				cout << inventoryNum[i] << ". " << inventoryString[i]
-						<< "\t+" << inventoryStats[i] << " " << inventoryType[i] << endl;
+						<< "\t+" << inventoryStats[i] << " " << inventoryType[i] << endl; 
 			}
 			else
 			{
 				cout << inventoryNum[i + 1] << ". " << inventoryString[i + 1]
-						<< "\t+" << inventoryStats[i + 1] << " " << inventoryType[i + 1] << endl;
+						<< "\t+" << inventoryStats[i + 1] << " " << inventoryType[i + 1] << endl; 
 			}
 		}
 	}
@@ -198,7 +198,7 @@ void Player::setInventory(bool inv[], string invStr[], int invStats[], string in
 void Player::addItemToInventory(int itemNumber, Player &plyr)
 {
 	inventory[itemNumber - 1] = true;
-
+	
 	if (inventoryString[itemNumber - 1] == "Bow and Arrows")
 	{
 		plyr.setAttack(plyr.getAttack() + inventoryStats[itemNumber - 1]);
@@ -275,8 +275,8 @@ void Player::displayPlayerStats(Player plyr)
 {
 	cout << "___________________\n";
 	cout << "\nName: " << plyr.getName() << "\nAttack: " << plyr.getAttack()
-			<< "\nHealth: " << plyr.getHealth() << "/" << plyr.getTotalHealth()
-			<< "\nArmor: " << plyr.getArmor() << "\nSpeed: " << plyr.getSpeed()
+			<< "\nHealth: " << plyr.getHealth() << "/" << plyr.getTotalHealth() 
+			<< "\nArmor: " << plyr.getArmor() << "\nSpeed: " << plyr.getSpeed() 
 			<< endl;
 	cout << "___________________\n";
 }
