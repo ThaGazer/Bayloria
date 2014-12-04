@@ -36,6 +36,17 @@ void instructions()
               "all 20 items collected throughout the game.\n\n";
 }
 
+void description()
+{
+  cout << "Bayloria is a mythical land that possesses some very strange beings"
+          "\nExplore Bayloria while you try to find your way through the maze\n"
+          "and labrinths that form the four levels of Bayloria\n"
+          "Fight your way through the dungeons and lands\n"
+          "Battle crazy bosses and aquire the treasures that are\n"
+          "hidden throughout the maps\nTip: pay attention to the directions"
+          " you move, because they may help when you get lost\n\n";
+}
+
 void whatToDo(int a)
 {
 	cout << "\nRoom " << a << endl;
