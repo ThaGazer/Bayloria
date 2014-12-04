@@ -976,7 +976,7 @@ void loc2(Player &plyr)
 				{
 					passCount[4]++;
 
-          cout << "You walked into a Knight!!!\nPrepare for battle\n\n";
+          cout << "You walked into a Archer!!!\nPrepare for battle\n\n";
 
           archr2.displayEntityStats(archr2);
           plyr.displayPlayerStats(plyr);
@@ -1632,7 +1632,7 @@ void loc3(Player &plyr)
 				{
 					passCount[3]++;
 
-					cout << "You stubbled into an Knight!!!\nPrepare for battle\n\n";
+					cout << "You stubbled into an Archer!!!\nPrepare for battle\n\n";
 
           archr2.displayEntityStats(archr2);
           plyr.displayPlayerStats(plyr);
@@ -1822,7 +1822,7 @@ void loc3(Player &plyr)
 				{
 					passCount[5]++;
 
-					cout << "You walked into an Archer!!!\nPrepare for battle\n\n";
+					cout << "You walked into an Knight!!!\nPrepare for battle\n\n";
 
           night1.displayEntityStats(night1);
           plyr.displayPlayerStats(plyr);
