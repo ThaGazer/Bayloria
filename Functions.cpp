@@ -133,7 +133,7 @@ void loc1(Player &plyr)
 		passCount[i] = 0;
 	}
 
-  cout << "\nMap loc 1" << endl;
+  cout << "\n\nThe Dungeon of Primus" << endl;
   while(locRoom1 < 6)
   {
 		bool move = false;
@@ -582,7 +582,7 @@ void loc2(Player &plyr)
 		passCount[i] = 0;
 	}
 
-  cout << "\nMap loc 2";
+  cout << "\n\nThe Lowlands of Secundus";
   while(locRoom2 < 9)
   {
 		bool move = false;
@@ -1338,7 +1338,7 @@ void loc3(Player &plyr)
 		passCount[i] = 0;
 	}
 
-  cout << "\n\nMap loc 3\n";
+  cout << "\n\nThe Sacred Forest of Tertius\n";
   while(locRoom3 < 12)
   {
 		bool move = false;
@@ -2349,7 +2349,7 @@ void loc4(Player &plyr)
 		passCount[i] = 0;
 	}
 
-  cout << "Map loc 4\n";
+  cout << "\n\nThe Mountain Fortress of Quartus\n";
   while(locRoom4 < 15)
   {
 		bool move = false;
