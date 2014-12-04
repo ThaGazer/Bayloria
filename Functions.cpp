@@ -154,12 +154,13 @@ void loc1(Player &plyr)
 						cout << endl;
 
 						if(decision == 1)
-						{				
+						{
 							searchRoom("red", redKey, redChestIsHere, open, plyr, 1);
 						} // if look around
 						else if(decision == 2)
 						{
-							passCount[0]++; // next time you enter room, will display different message...
+							passCount[0]++;
+							// next time you enter room, will display different message...
 							validDecision = true;
 							move = true;
 						} // if move
@@ -186,7 +187,7 @@ void loc1(Player &plyr)
 				{
 					passCount[0]++;
 					cout << "You have visited this room before...\n";
-						
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(1);
@@ -316,7 +317,7 @@ void loc1(Player &plyr)
 					}
 				} // else already been to room
       break; //locRoom1 2
-			
+
       case 3:;
 				if(passCount[2] == 0)
 				{
@@ -519,9 +520,12 @@ void loc1(Player &plyr)
 					if(boss1.getHealth() < 1)
 					{
 						cout << "You have defeated Raticus Primus!\n";
+            cout << "For defeating such a boss, you shall recieve the"
+                    "master key";
 						plyr.addGold(plyr, 20);
 						plyr.addItemToInventory(itemCountMasterkey, plyr);
 						plyr.getInventory(plyr);
+						//plyr.setHealth(plyr.getTotalHealth());
 					}
 
 					direct = 0;
@@ -565,6 +569,13 @@ void loc2(Player &plyr)
   int decision = 0;
   int direct = 0;
   int passCount[11];
+
+  Entity archr1;
+  Entity archr2;
+  Entity night1;
+  createArcher(archr1);
+  createArcher(archr2);
+  createKnight(night1);
 
 	for(int i = 0; i < 11; i++)
 	{
@@ -666,6 +677,16 @@ void loc2(Player &plyr)
 				if(passCount[1] == 0)
 				{
 					passCount[1]++;
+
+					cout << "You stubbled into an Archer!!!\nPrepare for battle\n\n";
+
+          archr1.displayEntityStats(archr1);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, archr1);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 5);
+          }
 					while(move == false && validDecision == false)
 					{
 						whatToDo(2);
@@ -937,6 +958,17 @@ void loc2(Player &plyr)
 				if(passCount[4] == 0)
 				{
 					passCount[4]++;
+
+          cout << "You walked into a Knight!!!\nPrepare for battle\n\n";
+
+          archr2.displayEntityStats(archr2);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, archr2);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 10);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(5);
@@ -1115,6 +1147,17 @@ void loc2(Player &plyr)
 				if(passCount[6] == 0)
 				{
 					passCount[6]++;
+
+          cout << "A Knight appeared from behind a door!!!\nPrepare for battle\n\n";
+
+          night1.displayEntityStats(night1);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, night1);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 10);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(7);
@@ -1260,10 +1303,6 @@ void loc3(Player &plyr)
 	bool greenChestIsHere = false;
 	bool blueChestIsHere = false;
 	bool yellowChestIsHere = false;
-	bool redChestIsHereTemp = false;
-	bool greenChestIsHereTemp = false;
-	bool blueChestIsHereTemp = false;
-	bool yellowChestIsHereTemp = false;
 
 	int itemCountMasterkey = 4;
 	bool redOpen = false;
@@ -1283,12 +1322,23 @@ void loc3(Player &plyr)
   int direct = 0;
   int passCount[11];
 
+  Entity archr1;
+  Entity archr2;
+  Entity night1;
+  Entity night2;
+  Entity wiz1;
+  createArcher(archr1);
+  createArcher(archr2);
+  createKnight(night1);
+  createKnight(night2);
+  createWizard(wiz1);
+
 	for(int i = 0; i < 11; i++)
 	{
 		passCount[i] = 0;
 	}
-  
-  cout << "Map loc 3\n";
+
+  cout << "\n\nMap loc 3\n";
   while(locRoom3 < 12)
   {
 		bool move = false;
@@ -1306,7 +1356,7 @@ void loc3(Player &plyr)
 				if(passCount[0] == 0)
 				{
 					passCount[0]++;
-					while(move == false && validDecision == false)
+          while(move == false && validDecision == false)
 					{
 						whatToDo(1);
 						cin >> decision;
@@ -1469,10 +1519,20 @@ void loc3(Player &plyr)
 
       case 3:;
 				blueChestIsHere = true;
-				blueChestIsHereTemp = blueChestIsHere;
 				if(passCount[2] == 0)
 				{
 					passCount[2]++;
+
+					cout << "You found an Archer!!!\nPrepare for battle\n\n";
+
+          archr1.displayEntityStats(archr1);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, archr1);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 5);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(3);
@@ -1519,7 +1579,7 @@ void loc3(Player &plyr)
 						cin >> decision;
 						if(decision == 1)
 						{
-							searchRoom("blue", blueKey, blueChestIsHereTemp, open, plyr, 13);
+							searchRoom("blue", blueKey, blueChestIsHere, open, plyr, 13);
 						}
 						else if (decision == 2)
 						{
@@ -1554,6 +1614,17 @@ void loc3(Player &plyr)
 				if(passCount[3] == 0)
 				{
 					passCount[3]++;
+
+					cout << "You stubbled into an Knight!!!\nPrepare for battle\n\n";
+
+          archr2.displayEntityStats(archr2);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, archr2);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 5);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(4);
@@ -1572,7 +1643,7 @@ void loc3(Player &plyr)
 							validDecision = false;
 						}
 					}
-					
+
 						direction[0] = false;
 						direction[1] = true;
 						direction[2] = false;
@@ -1612,7 +1683,7 @@ void loc3(Player &plyr)
 							validDecision = false;
 						}
 					}
-					
+
 					direction[0] = false;
 					direction[1] = true;
 					direction[2] = false;
@@ -1633,7 +1704,6 @@ void loc3(Player &plyr)
 
       case 5:;
 				greenChestIsHere = true;
-				greenChestIsHereTemp = greenChestIsHere;
 				if(passCount[4] == 0)
 				{
 					passCount[4]++;
@@ -1691,7 +1761,7 @@ void loc3(Player &plyr)
 						cin >> decision;
 						if(decision == 1)
 						{
-							searchRoom("green", greenKey, greenChestIsHereTemp, open, plyr, 12);
+							searchRoom("green", greenKey, greenChestIsHere, open, plyr, 12);
 						}
 						else if (decision == 2)
 						{
@@ -1734,6 +1804,17 @@ void loc3(Player &plyr)
 				if(passCount[5] == 0)
 				{
 					passCount[5]++;
+
+					cout << "You walked into an Archer!!!\nPrepare for battle\n\n";
+
+          night1.displayEntityStats(night1);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, night1);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 10);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(6);
@@ -1894,10 +1975,20 @@ void loc3(Player &plyr)
 
       case 8:;
 				redChestIsHere = true;
-				redChestIsHereTemp = redChestIsHere;
 				if(passCount[7] == 0)
 				{
 					passCount[7]++;
+
+					cout << "A Wizard appeared before you!!!\n Prepare for battle\n\n";
+
+          wiz1.displayEntityStats(wiz1);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, wiz1);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 15);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(8);
@@ -1952,7 +2043,7 @@ void loc3(Player &plyr)
 						cin >> decision;
 						if(decision == 1)
 						{
-							searchRoom("red", redKey, redChestIsHereTemp, open, plyr, 11);
+							searchRoom("red", redKey, redChestIsHere, open, plyr, 11);
 						}
 						else if (decision == 2)
 						{
@@ -1993,10 +2084,20 @@ void loc3(Player &plyr)
 
       case 9:;
 				yellowChestIsHere = true;
-				yellowChestIsHereTemp = yellowChestIsHere;
 				if(passCount[8] == 0)
 				{
 					passCount[8]++;
+
+					cout << "You found a Knight!!!\nPrepare for battle\n\n";
+
+          night2.displayEntityStats(night2);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, night2);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 10);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(9);
@@ -2039,7 +2140,7 @@ void loc3(Player &plyr)
 						cin >> decision;
 						if(decision == 1)
 						{
-							searchRoom("yellow", yellowKey, yellowChestIsHereTemp, open, plyr, 14);
+							searchRoom("yellow", yellowKey, yellowChestIsHere, open, plyr, 14);
 						}
 						else if (decision == 2)
 						{
@@ -2149,7 +2250,7 @@ void loc3(Player &plyr)
 
       case 11:;
 				do
-				{
+					{
 					cout << "\nYou are in room 11";
 					cout << "\n1: Fight the boss?\n"
 									"2: Back to the Dungeon\n";
@@ -2157,27 +2258,27 @@ void loc3(Player &plyr)
 
 					if(direct == 1 && foughtBoss == false)
 					{
-						cout << "A huge stag is lurching towards you...\n";
+						cout << "A massive serpent is weaving slowly toward you...\n";
 						foughtBoss = true;
-						Entity boss3;
-						createStagOfTertius(boss3); // create first boss
+						Entity boss2;
+						createSecondusSerpent(boss2); // create first boss
 
-						boss3.displayEntityStats(boss3);
+						boss2.displayEntityStats(boss2);
 						plyr.displayPlayerStats(plyr);
 
-						attack(plyr, boss3);
+						attack(plyr, boss2);
 
-						if(boss3.getHealth() < 1)
+						if(boss2.getHealth() < 1)
 						{
-							cout << "You have defeated Stag of Tertius!\n";
+							cout << "You have defeated Secondus Serpent!\n";
 							plyr.addGold(plyr, 20);
-							plyr.addItemToInventory(15, plyr);
+							plyr.addItemToInventory(itemCountMasterkey, plyr);
 							plyr.getInventory(plyr);
 							locRoom3++;
 						}
 
 						direct = 0;
-						locRoom3 = 11;
+						locRoom3 = 12;
 					}
 					else if(direct == 2)
 					{
@@ -2188,7 +2289,7 @@ void loc3(Player &plyr)
 					{
 						invalidCommand();
 					}
-				}while(direct != 1 && direct != 2);
+				}while(direct != 1);
       break; //locRoom3 11
     } //swtich locRoom3
   } //while locRoom3
@@ -2227,6 +2328,21 @@ void loc4(Player &plyr)
   int decision = 0;
   int direct = 0;
   int passCount[14];
+
+  Entity archr1;
+  Entity archr2;
+  Entity night1;
+  Entity night2;
+  Entity night3;
+  Entity wiz1;
+  Entity wiz2;
+  createArcher(archr1);
+  createArcher(archr2);
+  createKnight(night1);
+  createKnight(night2);
+  createKnight(night3);
+  createWizard(wiz1);
+  createWizard(wiz2);
 
 	for(int i = 0; i < 14; i++)
 	{
@@ -2411,6 +2527,17 @@ void loc4(Player &plyr)
 				if(passCount[2] == 0)
 				{
 					passCount[2]++;
+
+					cout << "You stubbled into an Knight!!!\nPrepare for battle\n\n";
+
+          night1.displayEntityStats(night1);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, night1);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 10);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(3);
@@ -2579,6 +2706,17 @@ void loc4(Player &plyr)
 				if(passCount[4] == 0)
 				{
 					passCount[4]++;
+
+					cout << "You found an Archer!!!\nPrepare for battle\n\n";
+
+          archr1.displayEntityStats(archr1);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, archr1);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 5);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(5);
@@ -2765,7 +2903,7 @@ void loc4(Player &plyr)
 					{
 						locRoom4--;
 					}
-				}	
+				}
       break; //locRoom4 6
 
       case 7:;
@@ -2774,6 +2912,17 @@ void loc4(Player &plyr)
 				if(passCount[6] == 0)
 				{
 					passCount[6]++;
+
+					cout << "You walked into an Archer!!!\nPrepare for battle\n\n";
+
+          archr2.displayEntityStats(archr2);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, archr2);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 5);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(7);
@@ -2948,6 +3097,17 @@ void loc4(Player &plyr)
 				if(passCount[8] == 0)
 				{
 					passCount[8]++;
+
+					cout << "You found a Knight!!!\nPrepare for battle\n\n";
+
+          night2.displayEntityStats(night2);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, night2);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 10);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(9);
@@ -3108,6 +3268,17 @@ void loc4(Player &plyr)
 				if(passCount[10] == 0)
 				{
 					passCount[10]++;
+
+          cout << "You stubbled into an Knight!!!\nPrepare for battle\n\n";
+
+          night3.displayEntityStats(night3);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, night3);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 10);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(11);
@@ -3183,6 +3354,17 @@ void loc4(Player &plyr)
 				if(passCount[11] == 0)
 				{
 					passCount[11]++;
+
+					cout << "A Wizard appeared before you!!!\n Prepare for battle\n\n";
+
+          wiz1.displayEntityStats(wiz1);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, wiz1);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 15);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(12);
@@ -3270,6 +3452,17 @@ void loc4(Player &plyr)
 				if(passCount[12] == 0)
 				{
 					passCount[12]++;
+
+          cout << "You walked into a Wizard!!!\n Prepare for battle\n\n";
+
+          wiz2.displayEntityStats(wiz2);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, wiz2);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 15);
+          }
+
 					while(move == false && validDecision == false)
 					{
 					 whatToDo(13);
