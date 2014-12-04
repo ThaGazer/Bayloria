@@ -15,7 +15,7 @@
 #include "Functions.h"
 #include <string>
 #include <iostream>
-#include <time.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -3673,6 +3673,13 @@ void attack(Player plyr, Entity entity)
 		plyr.displayPlayerStats(plyr);
 
 		turn++;
+	}
+	
+	if(plyr.getHealth() <= 0)
+	{
+		cout << "\n\nYou have just been slain\n";
+		cout << "You had aquired " << plyr.getGold() << " gold coins";
+		exit(1);
 	}
 }
 
