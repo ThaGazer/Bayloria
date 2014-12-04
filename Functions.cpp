@@ -38,7 +38,7 @@ void instructions()
 
 void whatToDo(int a)
 {
-	cout << "\Room " << a << endl;
+	cout << "\nRoom " << a << endl;
   cout << "What would you like to do here?\n";
   cout << "[1] search the room\n"
           "[2] move on to the next room\n";
