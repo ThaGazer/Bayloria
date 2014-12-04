@@ -753,7 +753,7 @@ void loc2(Player plyr)
   } //while locRoom2
 }
 
-void loc3(Player plyr)
+void loc3(Player &plyr)
 {
 	bool redKey = true; // all keys true because no locks first floor
 	bool greenKey = true; // all keys true because no locks first floor
@@ -787,8 +787,8 @@ void loc3(Player plyr)
 	{
 		passCount[i] = 0;
 	}
-  
-  cout << "Map loc 3\n";
+
+  cout << "\n\nMap loc 3\n";
   while(locRoom3 < 12)
   {
 		bool move = false;
@@ -800,13 +800,24 @@ void loc3(Player plyr)
 		blueChestIsHere = false;
 		yellowChestIsHere = false;
 
+		Entity archr1;
+    Entity archr2;
+    Entity night1;
+    Entity night2;
+    Entity wiz1;
+    createArcher(archr1);
+    createArcher(archr2);
+    createKnight(night1);
+    createKnight(night2);
+    createWizard(wiz1);
+
     switch(locRoom3)
     {
       case 1:;
 				if(passCount[0] == 0)
 				{
 					passCount[0]++;
-					while(move == false && validDecision == false)
+          while(move == false && validDecision == false)
 					{
 						whatToDo(1);
 						cin >> decision;
@@ -972,6 +983,17 @@ void loc3(Player plyr)
 				if(passCount[2] == 0)
 				{
 					passCount[2]++;
+
+					cout << "You found an Archer!!!\nPrepare for battle\n\n";
+
+          archr1.displayEntityStats(archr1);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, archr1);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 5);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(3);
@@ -1053,6 +1075,17 @@ void loc3(Player plyr)
 				if(passCount[3] == 0)
 				{
 					passCount[3]++;
+
+					cout << "You stubbled into an Knight!!!\nPrepare for battle\n\n";
+
+          archr2.displayEntityStats(archr2);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, archr2);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 5);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(4);
@@ -1071,7 +1104,7 @@ void loc3(Player plyr)
 							validDecision = false;
 						}
 					}
-					
+
 						direction[0] = false;
 						direction[1] = true;
 						direction[2] = false;
@@ -1111,7 +1144,7 @@ void loc3(Player plyr)
 							validDecision = false;
 						}
 					}
-					
+
 					direction[0] = false;
 					direction[1] = true;
 					direction[2] = false;
@@ -1232,6 +1265,17 @@ void loc3(Player plyr)
 				if(passCount[5] == 0)
 				{
 					passCount[5]++;
+
+					cout << "You walked into an Archer!!!\nPrepare for battle\n\n";
+
+          night1.displayEntityStats(night1);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, night1);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 10);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(6);
@@ -1395,6 +1439,17 @@ void loc3(Player plyr)
 				if(passCount[7] == 0)
 				{
 					passCount[7]++;
+
+					cout << "A Wizard appeared before you!!!\n Prepare for battle\n\n";
+
+          wiz1.displayEntityStats(wiz1);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, wiz1);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 15);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(8);
@@ -1493,6 +1548,17 @@ void loc3(Player plyr)
 				if(passCount[8] == 0)
 				{
 					passCount[8]++;
+
+					cout << "You found a Knight!!!\nPrepare for battle\n\n";
+
+          night2.displayEntityStats(night2);
+          plyr.displayPlayerStats(plyr);
+          attack(plyr, night2);
+          if(plyr.getHealth() > 0)
+          {
+            plyr.addGold(plyr, 10);
+          }
+
 					while(move == false && validDecision == false)
 					{
 						whatToDo(9);
@@ -1673,7 +1739,7 @@ void loc3(Player plyr)
 						}
 
 						direct = 0;
-						locRoom3 = 11;
+						locRoom3 = 12;
 					}
 					else if(direct == 2)
 					{
@@ -1684,7 +1750,7 @@ void loc3(Player plyr)
 					{
 						invalidCommand();
 					}
-				}while(direct != 1 && direct != 2);
+				}while(direct != 1);
       break; //locRoom3 11
     } //swtich locRoom3
   } //while locRoom3
