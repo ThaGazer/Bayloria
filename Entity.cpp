@@ -84,9 +84,8 @@ void Entity::displayEntityStats(Entity entity)
 {
 	cout << "___________________\n";
 	cout << "\nName: " << entity.getName() << "\nAttack: " << entity.getAttack()
-			<< "\nHealth: " << entity.getHealth() << "/" << entity.getTotalHealth() 
-			<< "\nArmor: " << entity.getArmor() << "\nSpeed: " << entity.getSpeed() 
+			<< "\nHealth: " << entity.getHealth() << "/" << entity.getTotalHealth()
+			<< "\nArmor: " << entity.getArmor() << "\nSpeed: " << entity.getSpeed()
 			<< endl;
 	cout << "___________________\n";
 }
-
